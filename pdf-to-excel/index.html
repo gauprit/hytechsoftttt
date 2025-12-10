@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PDF to Excel Converter — Hytechsoft</title>
+<meta name="description"
+  content="Free PDF to Excel converter. Extract tables from PDFs and download as Excel. No login. Mobile friendly.">
+
+<link rel="canonical" href="https://www.hytechsoft.com/pdf-to-excel/">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<!-- SheetJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<style>
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+}
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+<!-- ================= HEADER (SAME STYLE) ================= -->
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3">
+      <img src="logoW.jpg" alt="Hytechsoft" class="h-10 w-auto rounded-lg">
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="/tools" class="text-sm font-medium text-slate-700 hover:text-cyan-600">Tools</a>
+      <a href="/about" class="text-sm font-medium text-slate-700 hover:text-cyan-600">About</a>
+      <a href="/contact" class="text-sm font-medium text-slate-700 hover:text-cyan-600">Contact</a>
+      <a href="/impact"
+         class="ml-2 inline-flex items-center px-4 py-2 rounded-full bg-cyan-600 text-white text-sm font-semibold">
+        Get Help
+      </a>
+    </nav>
+
+    <!-- Mobile Toggle -->
+    <button id="mobile-toggle" class="md:hidden p-2 rounded-lg bg-slate-100">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 6h16M4 12h16M4 18h16"
+          stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" />
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-white">
+    <div class="px-4 py-4 space-y-3">
+      <a href="/tools" class="block font-medium">Tools</a>
+      <a href="/about" class="block font-medium">About</a>
+      <a href="/contact" class="block font-medium">Contact</a>
+      <a href="/impact" class="block font-medium text-cyan-600">Get Help</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ================= MAIN ================= -->
+<main class="max-w-xl mx-auto px-4 py-12">
+
+  <!-- Hero -->
+  <section class="text-center mb-10">
+    <h1 class="text-3xl font-extrabold text-slate-900">
+      PDF to Excel Converter
+    </h1>
+    <p class="mt-2 text-slate-500 text-sm">
+      Extract tables from PDF and download as Excel · No Login · Mobile-Friendly
+    </p>
+  </section>
+
+  <!-- Tool -->
+  <section class="bg-white border rounded-2xl p-6 space-y-6 shadow-sm">
+
+    <!-- Upload -->
+    <div>
+      <label class="text-sm font-medium">Upload PDF</label>
+      <input id="pdfInput" type="file" accept="application/pdf"
+        class="mt-2 w-full px-3 py-3 border rounded-xl bg-slate-50">
+      <p class="mt-1 text-xs text-slate-500">
+        Best for text-based PDFs (not scanned images)
+      </p>
+    </div>
+
+    <!-- Convert -->
+    <button id="convertBtn"
+      class="w-full py-3 bg-cyan-600 text-white rounded-xl font-semibold hover:bg-cyan-700">
+      Convert to Excel
+    </button>
+
+    <!-- Status -->
+    <div id="status" class="text-sm text-slate-500 text-center hidden"></div>
+
+  </section>
+
+  <!-- Info (SEO + trust) -->
+  <section class="mt-10 text-sm text-slate-600 space-y-3">
+    <h2 class="font-semibold text-slate-800">How it works</h2>
+    <ul class="list-disc ml-5">
+      <li>Upload a text-based PDF</li>
+      <li>Tables are extracted page by page</li>
+      <li>Download Excel (.xlsx) instantly</li>
+      <li>Files never leave your device</li>
+    </ul>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="mt-16 border-t bg-white">
+  <div class="max-w-6xl mx-auto px-4 py-6 text-xs text-slate-500 text-center">
+    © 2025 Hytechsoft · Managed by
+    <a href="https://www.hyquantix.com"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="text-cyan-600 hover:text-cyan-700 font-medium">
+      Hyquantix Technologies
+    </a>
+  </div>
+</footer>
+
+<!-- ================= JS ================= -->
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const input = document.getElementById("pdfInput");
+const btn = document.getElementById("convertBtn");
+const statusEl = document.getElementById("status");
+
+btn.onclick = async () => {
+  if (!input.files.length) {
+    alert("Please upload a PDF file");
+    return;
+  }
+
+  statusEl.textContent = "Reading PDF…";
+  statusEl.classList.remove("hidden");
+
+  const file = input.files[0];
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+
+  let rows = [];
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    statusEl.textContent = `Processing page ${i} of ${pdf.numPages}…`;
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+
+    let line = [];
+    content.items.forEach(item => {
+      if (item.str.trim()) {
+        line.push(item.str);
+      }
+      if (line.length >= 6) {
+        rows.push(line);
+        line = [];
+      }
+    });
+    if (line.length) rows.push(line);
+  }
+
+  if (!rows.length) {
+    statusEl.textContent = "No table data found in this PDF.";
+    return;
+  }
+
+  statusEl.textContent = "Creating Excel file…";
+
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+
+  XLSX.writeFile(wb, "pdf-to-excel.xlsx");
+
+  statusEl.textContent = "✅ Excel file downloaded";
+};
+</script>
+
+</body>
+</html>
