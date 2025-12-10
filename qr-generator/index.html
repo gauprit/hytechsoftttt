@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Advanced QR Code Generator — Hytechsoft</title>
+<meta name="description" content="Create advanced QR codes for URL, WhatsApp, WiFi, Email, vCard & more. Add logo, colors & download instantly.">
+
+<link rel="canonical" href="https://www.hytechsoft.com/qr-generator/">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+}
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+
+    <a href="/" class="flex items-center gap-3">
+      <img src="logoW.jpg" alt="Hytechsoft" class="w-30 h-10 rounded-lg ">
+      <div>
+
+
+      </div>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="#tools" class="text-sm font-medium text-slate-700 hover:text-cyan-600">Tools</a>
+      <a href="#about" class="text-sm font-medium text-slate-700 hover:text-cyan-600">About</a>
+      <a href="#contact" class="text-sm font-medium text-slate-700 hover:text-cyan-600">Contact</a>
+      <a href="/impact"
+        class="ml-2 inline-flex items-center px-4 py-2 rounded-full bg-cyan-600 text-white text-sm font-semibold">
+        Get Help
+      </a>
+    </nav>
+
+    <button id="mobile-toggle" class="md:hidden p-2 rounded-lg bg-slate-100">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 6h16M4 12h16M4 18h16"
+          stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+    </button>
+
+  </div>
+
+  <div id="mobile-menu" class="md:hidden hidden border-t border-slate-100">
+    <div class="px-4 py-4 space-y-3">
+      <a href="#tools" class="block font-medium">Tools</a>
+      <a href="#about" class="block font-medium">About</a>
+      <a href="#contact" class="block font-medium">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 py-10">
+
+<!-- HERO -->
+<section class="text-center mb-12 px-2">
+
+  <!-- Eyebrow -->
+  <p class="inline-block mb-4 px-4 py-1.5 rounded-full 
+            bg-cyan-50 text-cyan-700 text-xs font-semibold tracking-wide">
+    Free · Privacy-First · No Login
+  </p>
+
+  <!-- Main Heading -->
+  <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+    Advanced QR Code Generator
+  </h1>
+
+  <!-- Subheading -->
+  <p class="mt-3 text-slate-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+    Create professional QR codes for websites, WhatsApp, WiFi, email, and more.
+    Customize colors, add your logo, and download instantly — all from your browser.
+  </p>
+
+  <!-- Value Points -->
+  <div class="mt-6 flex flex-wrap justify-center gap-5 text-xs sm:text-sm text-slate-500">
+    <span>⚡ Instant Preview</span>
+    <span>🎨 Full Customization</span>
+    <span>📱 Mobile-Friendly</span>
+    <span>🔒 No Tracking</span>
+  </div>
+
+</section>
+
+
+<!-- APP -->
+<section class="grid md:grid-cols-2 gap-8">
+
+<!-- LEFT -->
+<div class="bg-white border rounded-2xl p-6 space-y-5">
+
+<!-- TYPE -->
+<div>
+  <label class="text-sm font-medium">QR Type</label>
+  <select id="qrType" class="mt-1 w-full px-4 py-2 rounded-xl border">
+    <option value="url">Website / URL</option>
+    <option value="text">Text</option>
+    <option value="whatsapp">WhatsApp</option>
+    <option value="email">Email</option>
+    <option value="phone">Phone</option>
+    <option value="wifi">WiFi</option>
+    <option value="vcard">vCard</option>
+  </select>
+</div>
+
+<!-- INPUT -->
+<div id="inputArea">
+  <label class="text-sm font-medium">Content</label>
+  <textarea id="mainInput" rows="3"
+    placeholder="Enter website URL"
+    class="mt-1 w-full px-4 py-3 rounded-xl border"></textarea>
+</div>
+
+<!-- COLORS -->
+<div class="grid grid-cols-2 gap-4">
+  <div>
+    <label class="text-sm font-medium">Foreground</label>
+    <input id="fg" type="color" value="#000000" class="w-full h-10 rounded">
+  </div>
+  <div>
+    <label class="text-sm font-medium">Background</label>
+    <input id="bg" type="color" value="#ffffff" class="w-full h-10 rounded">
+  </div>
+</div>
+
+<!-- SIZE -->
+<div>
+  <label class="text-sm font-medium">QR Size</label>
+  <input id="size" type="range" min="180" max="280" value="220" class="w-full">
+
+</div>
+
+<!-- LOGO -->
+<div>
+  <label class="text-sm font-medium">Logo (optional)</label>
+  <input id="logo" type="file" accept="image/*"
+  class="w-full text-sm px-3 py-2 border rounded-lg bg-slate-50">
+
+</div>
+
+<button onclick="generate()"
+class="w-full py-3 bg-cyan-600 text-white rounded-xl font-semibold hover:bg-cyan-700">
+Generate QR
+</button>
+
+</div>
+
+<!-- RIGHT -->
+<div class="bg-white border rounded-2xl p-6 flex flex-col items-center">
+  <div id="qrBox" class="mb-6 max-w-[260px] w-full mx-auto"></div>
+
+  <button onclick="downloadQR()"
+    class="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200">
+    Download PNG
+  </button>
+</div>
+
+</section>
+
+</main>
+
+<footer class="mt-16 border-t bg-white">
+<div class="max-w-6xl mx-auto px-4 py-6 text-xs text-slate-500">
+© 2025 Hytechsoft · Managed by Hyquantix Technologies
+</div>
+</footer>
+
+<script>
+let qr;
+
+function generate() {
+  const type = qrType.value;
+  let value = mainInput.value.trim();
+  if (!value) return alert("Enter content");
+
+  if (type === "whatsapp") value = `https://wa.me/${value}`;
+  if (type === "email") value = `mailto:${value}`;
+  if (type === "phone") value = `tel:${value}`;
+
+  const box = document.getElementById("qrBox");
+  box.innerHTML = "";
+
+  qr = new QRCode(box, {
+    text: value,
+    width: size.value,
+    height: size.value,
+    colorDark: fg.value,
+    colorLight: bg.value,
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+  setTimeout(addLogo, 300);
+}
+
+function addLogo() {
+  if (!logo.files.length) return;
+  const img = document.createElement("img");
+  img.src = URL.createObjectURL(logo.files[0]);
+  img.className = "absolute w-14 h-14 rounded-lg";
+  qrBox.style.position = "relative";
+  qrBox.appendChild(img);
+  img.style.top = "50%";
+  img.style.left = "50%";
+  img.style.transform = "translate(-50%,-50%)";
+}
+
+function downloadQR() {
+  const canvas = qrBox.querySelector("canvas");
+  if (!canvas) return;
+  const a = document.createElement("a");
+  a.download = "qr-code.png";
+  a.href = canvas.toDataURL();
+  a.click();
+}
+box.scrollIntoView({ behavior: "smooth", block: "center" });
+
+</script>
+
+</body>
+</html>
