@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>GST Calculator Online (Add / Remove GST) — Hytechsoft</title>
+
+  <meta name="description"
+    content="Free GST Calculator online. Add or remove GST, calculate CGST, SGST & IGST instantly. Accurate GST calculation for India. No login required." />
+
+  <link rel="canonical" href="https://www.hytechsoft.com/gst-calculator/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GST Calculator Online — Hytechsoft" />
+  <meta property="og:description"
+    content="Calculate GST instantly. Add or remove GST, split CGST, SGST, IGST. Free, fast & accurate GST calculator." />
+  <meta property="og:url" content="https://www.hytechsoft.com/gst-calculator/" />
+  <meta property="og:image" content="https://www.hytechsoft.com/og-gst.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GST Calculator Online — Hytechsoft" />
+  <meta name="twitter:description"
+    content="Free GST calculator to add/remove tax and calculate CGST, SGST & IGST instantly." />
+  <meta name="twitter:image" content="https://www.hytechsoft.com/og-gst.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, sans-serif;
+    }
+  </style>
+
+
+<body class="bg-slate-50 text-slate-800">
+
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+
+    <a href="/" class="flex items-center gap-3">
+      <img src="logoW.jpg" alt="Hytechsoft" class="h-10 w-auto" />
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="/tools" class="text-sm font-medium text-slate-700 hover:text-cyan-600">Tools</a>
+      <a href="/about" class="text-sm font-medium text-slate-700 hover:text-cyan-600">About</a>
+      <a href="/contact" class="text-sm font-medium text-slate-700 hover:text-cyan-600">Contact</a>
+      <a href="/impact"
+        class="ml-2 inline-flex items-center px-4 py-2 rounded-full bg-cyan-600 text-white text-sm font-semibold">
+        Get Help
+      </a>
+    </nav>
+
+    <button id="mobile-toggle" class="md:hidden p-2 rounded-lg bg-slate-100">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 6h16M4 12h16M4 18h16"
+          stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-white">
+    <div class="px-4 py-4 space-y-3">
+      <a href="/tools" class="block font-medium">Tools</a>
+      <a href="/about" class="block font-medium">About</a>
+      <a href="/contact" class="block font-medium">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="max-w-xl mx-auto px-4 py-12">
+
+  <!-- Page Header -->
+  <section class="text-center mb-10">
+    <h1 class="text-3xl font-extrabold text-slate-900">
+      GST Calculator
+    </h1>
+    <p class="mt-2 text-slate-500 text-sm">
+      Simple · Accurate · Instant
+    </p>
+  </section>
+
+  <!-- Calculator -->
+  <section class="bg-white border border-slate-200 rounded-2xl p-6 space-y-6 shadow-sm">
+
+    <!-- Amount -->
+    <div>
+      <label class="text-sm font-medium text-slate-700">Amount (₹)</label>
+      <input id="amount" type="number" placeholder="Enter amount"
+        class="mt-1 w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+    </div>
+
+    <!-- GST Rate -->
+    <div>
+      <label class="text-sm font-medium text-slate-700">GST Rate</label>
+
+      <div class="grid grid-cols-4 gap-2 mt-2">
+        <button class="rate-btn" data-rate="5">5%</button>
+        <button class="rate-btn" data-rate="12">12%</button>
+        <button class="rate-btn active" data-rate="18">18%</button>
+        <button class="rate-btn" data-rate="28">28%</button>
+      </div>
+
+      <input id="customRate" type="number" placeholder="Custom GST %"
+        class="mt-3 w-full px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+    </div>
+
+    <!-- Mode -->
+    <div class="grid grid-cols-2 gap-3">
+      <button id="addMode" class="mode-btn active">Add GST</button>
+      <button id="removeMode" class="mode-btn">Remove GST</button>
+    </div>
+
+    <!-- Supply Type -->
+    <div class="grid grid-cols-2 gap-3">
+      <button id="intra" class="supply-btn active">Intra-State</button>
+      <button id="inter" class="supply-btn">Inter-State</button>
+    </div>
+
+    <!-- Result -->
+    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-2">
+      <div class="flex justify-between text-sm">
+        <span>Base Amount</span>
+        <span id="base">₹0.00</span>
+      </div>
+
+      <div class="flex justify-between text-sm">
+        <span>Total GST</span>
+        <span id="gst">₹0.00</span>
+      </div>
+
+      <div id="split" class="hidden text-sm text-slate-500">
+        CGST: <span id="cgst">₹0.00</span> · SGST: <span id="sgst">₹0.00</span>
+      </div>
+
+      <div id="igstRow" class="hidden text-sm text-slate-500">
+        IGST: <span id="igst">₹0.00</span>
+      </div>
+
+      <div class="border-t border-slate-200 pt-2 flex justify-between font-semibold">
+        <span>Total Amount</span>
+        <span id="total">₹0.00</span>
+      </div>
+    </div>
+
+    <!-- Reset -->
+    <button id="reset"
+      class="w-full py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">
+      Reset Calculator
+    </button>
+
+  </section>
+
+  <!-- Footer -->
+  <p class="text-center text-xs text-slate-500 mt-6">
+    Powered by Hytechsoft · Managed by Hyquantix Technologies
+  </p>
+
+</main>
+
+<!-- ================= JS ================= -->
+<script>
+  // Mobile menu
+  document.getElementById("mobile-toggle").onclick = () => {
+    document.getElementById("mobile-menu").classList.toggle("hidden");
+  };
+
+  const amountInput = document.getElementById("amount");
+  const rateButtons = document.querySelectorAll(".rate-btn");
+  const customRate = document.getElementById("customRate");
+
+  const baseEl = document.getElementById("base");
+  const gstEl = document.getElementById("gst");
+  const totalEl = document.getElementById("total");
+  const cgstEl = document.getElementById("cgst");
+  const sgstEl = document.getElementById("sgst");
+  const igstEl = document.getElementById("igst");
+  const splitRow = document.getElementById("split");
+  const igstRow = document.getElementById("igstRow");
+
+  let rate = 18;
+  let mode = "add";
+  let supply = "intra";
+
+  function format(n) {
+    return "₹" + n.toFixed(2);
+  }
+
+  function calculate() {
+    const amount = parseFloat(amountInput.value) || 0;
+    const r = rate / 100;
+
+    let base, gst, total;
+
+    if (mode === "add") {
+      base = amount;
+      gst = amount * r;
+      total = base + gst;
+    } else {
+      total = amount;
+      base = total / (1 + r);
+      gst = total - base;
+    }
+
+    baseEl.textContent = format(base);
+    gstEl.textContent = format(gst);
+    totalEl.textContent = format(total);
+
+    if (supply === "intra") {
+      splitRow.classList.remove("hidden");
+      igstRow.classList.add("hidden");
+      cgstEl.textContent = format(gst / 2);
+      sgstEl.textContent = format(gst / 2);
+    } else {
+      splitRow.classList.add("hidden");
+      igstRow.classList.remove("hidden");
+      igstEl.textContent = format(gst);
+    }
+  }
+
+  rateButtons.forEach(btn => {
+    btn.onclick = () => {
+      rateButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      rate = Number(btn.dataset.rate);
+      customRate.value = "";
+      calculate();
+    };
+  });
+
+  customRate.oninput = () => {
+    rateButtons.forEach(b => b.classList.remove("active"));
+    rate = Number(customRate.value) || 0;
+    calculate();
+  };
+
+  document.getElementById("addMode").onclick = () => {
+    mode = "add";
+    document.getElementById("addMode").classList.add("active");
+    document.getElementById("removeMode").classList.remove("active");
+    calculate();
+  };
+
+  document.getElementById("removeMode").onclick = () => {
+    mode = "remove";
+    document.getElementById("removeMode").classList.add("active");
+    document.getElementById("addMode").classList.remove("active");
+    calculate();
+  };
+
+  document.getElementById("intra").onclick = () => {
+    supply = "intra";
+    document.getElementById("intra").classList.add("active");
+    document.getElementById("inter").classList.remove("active");
+    calculate();
+  };
+
+  document.getElementById("inter").onclick = () => {
+    supply = "inter";
+    document.getElementById("inter").classList.add("active");
+    document.getElementById("intra").classList.remove("active");
+    calculate();
+  };
+
+  amountInput.oninput = calculate;
+
+  document.getElementById("reset").onclick = () => {
+    amountInput.value = "";
+    customRate.value = "";
+    rate = 18;
+    supply = "intra";
+    mode = "add";
+    calculate();
+  };
+
+  calculate();
+</script>
+
+<!-- Button styles -->
+<style>
+  .rate-btn,
+  .mode-btn,
+  .supply-btn {
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .rate-btn.active,
+  .mode-btn.active,
+  .supply-btn.active {
+    background: #06b6d4;
+    color: #fff;
+    border-color: #06b6d4;
+  }
+</style>
+
+</body>
+</html>
