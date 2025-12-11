@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Privacy Policy — Hytechsoft Free Tools (Managed by Hyquantix Technologies)</title>
+  <meta name="description" content="Comprehensive privacy policy for Hytechsoft Free Tools (managed by Hyquantix Technologies). Explains client-side processing, GDPR & CCPA rights, third-party libs, security, and technical details including code examples.">
+
+  <link rel="canonical" href="https://www.hytechsoft.com/privacy/">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Privacy Policy — Hytechsoft">
+  <meta property="og:description" content="Comprehensive privacy policy for Hytechsoft Free Tools.">
+  <meta property="og:url" content="https://www.hytechsoft.com/privacy/">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    pre.hl { background: #0f172a; color: #e6edf3; padding: 16px; border-radius: 8px; overflow:auto; }
+    .lead { color: #475569; }
+    .muted { color: #64748b; }
+    .pill { display:inline-block; padding:6px 10px; border-radius:999px; background:#ecfeff; color:#075985; font-weight:600; font-size:12px; }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- REUSABLE HEADER -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <img src="/logoW.jpg" alt="Hytechsoft" class="h-10 w-auto rounded-lg" />
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/tools" class="text-sm font-medium text-slate-700 hover:text-cyan-600">Tools</a>
+        <a href="/about" class="text-sm font-medium text-slate-700 hover:text-cyan-600">About</a>
+        <a href="/contact" class="text-sm font-medium text-slate-700 hover:text-cyan-600">Contact</a>
+      </nav>
+
+      <button id="mobile-toggle" class="md:hidden p-2 rounded-lg bg-slate-100" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="md:hidden hidden border-t border-slate-100 bg-white">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/tools" class="block font-medium">Tools</a>
+        <a href="/about" class="block font-medium">About</a>
+        <a href="/contact" class="block font-medium">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="max-w-5xl mx-auto px-4 py-12">
+
+    <!-- Intro -->
+    <section class="mb-6 text-center">
+      <p class="pill mb-3">Privacy-First • Client-Side Processing • No Uploads</p>
+      <h1 class="text-2xl sm:text-3xl font-extrabold">Privacy Policy</h1>
+      <p class="mt-3 lead max-w-2xl mx-auto text-sm">
+        Last updated: <strong>January 2025</strong> — This policy explains how Hytechsoft (managed by Hyquantix Technologies) handles data,
+        the technical design behind our tools, and the rights available to users (GDPR, CCPA).
+      </p>
+    </section>
+
+    <!-- Essential summary -->
+    <section class="bg-white rounded-2xl border p-6 mb-6">
+      <h2 class="text-lg font-semibold">At a glance</h2>
+      <ul class="mt-3 space-y-2 text-sm muted">
+        <li><strong>No file uploads by default:</strong> Tools process files inside your browser — files stay on your device.</li>
+        <li><strong>No tracking:</strong> We do not use tracking cookies, cross-site trackers or fingerprinting.</li>
+        <li><strong>Minimal telemetry:</strong> We may collect anonymized, aggregated usage metrics and non-identifying error reports to improve the service.</li>
+      </ul>
+    </section>
+
+    <!-- Full policy -->
+    <article class="prose max-w-none">
+
+      <h2>1. Scope & Applicability</h2>
+      <p class="muted">This policy applies to all Hytechsoft web tools and pages hosted under hytechsoft.com and related subpaths. It covers the types of information handled, how it’s processed, third-party libraries used, and user rights under privacy laws.</p>
+
+      <h2>2. What We Do NOT Collect</h2>
+      <p class="muted">We do <strong>not</strong> collect, store, or transmit the following:</p>
+      <ul class="list-disc pl-6 muted">
+        <li>Personal identifiers (name, email, phone, address)</li>
+        <li>IP addresses or persistent device identifiers</li>
+        <li>Uploaded document contents (PDFs, images, recorded audio/video)</li>
+        <li>Authentication credentials or user account data</li>
+        <li>Payment information</li>
+      </ul>
+
+      <h2>3. What We May Collect (Minimal, Non-Identifying)</h2>
+      <p class="muted">To operate and improve the service we may collect:</p>
+      <ul class="list-disc pl-6 muted">
+        <li>Aggregated usage counts (e.g., tool X was used N times)</li>
+        <li>Non-identifying browser/device type (user agent family, not full UA)</li>
+        <li>Anonymous error logs (stack traces stripped of file content and user data)</li>
+      </ul>
+      <p class="muted">All analytics are anonymized and cannot be used to identify individual users.</p>
+
+      <h2>4. Client-Side Processing — Technical Details (Safe by design)</h2>
+      <p class="muted">Our tools are intentionally implemented to keep user data local. Below is a conceptual overview and a short code example showing the typical pattern used by our PDF and QR tools.</p>
+
+      <h3 class="text-sm font-semibold mt-3">Design principles</h3>
+      <ul class="pl-6 list-disc muted">
+        <li><strong>Local file access:</strong> Files are read using `File` APIs and `ArrayBuffer`/`Blob` in the browser.</li>
+        <li><strong>In-memory processing:</strong> PDF parsing/rendering and transformations occur in memory (Canvas, PDF.js, jsPDF, pdf-lib).</li>
+        <li><strong>No automatic uploads:</strong> No file is sent to any remote server unless the user explicitly chooses an optional upload feature (which will always be communicated and require explicit consent).</li>
+        <li><strong>Permissions:</strong> The browser handles permissions (file chooser, microphone), and the site does not request any unusual permissions.</li>
+      </ul>
+
+      <h3 class="text-sm font-semibold mt-3">Typical client-side code pattern (example)</h3>
+      <p class="muted">This simplified snippet shows how we read a PDF file and render a page to a canvas (used in compressors / converters). It is the same basic approach in production, just more robust and with error handling.</p>
+
+      <pre class="hl"><code>// Read a PDF file and render first page to canvas (simplified)
+const file = document.querySelector('#pdfInput').files[0];
+if (!file) throw new Error('No file selected');
+
+const arrayBuffer = await file.arrayBuffer();
+const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+const pdf = await loadingTask.promise;
+const page = await pdf.getPage(1);
+const viewport = page.getViewport({ scale: 1.0 });
+
+const canvas = document.createElement('canvas');
+canvas.width = Math.round(viewport.width);
+canvas.height = Math.round(viewport.height);
+await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+
+// Now canvas contains rendered page pixels; convert to image or process further.
+// No data was sent to any server.
+const imgData = canvas.toDataURL('image/jpeg', 0.8);</code></pre>
+
+      <h2>5. Optional Server Features (explicit consent required)</h2>
+      <p class="muted">Some advanced features (for example: OCR for scanned documents, server-speed large-file processing, or optional cloud backup) require the file to be uploaded. These features are <em>not enabled by default</em>. If implemented they will:</p>
+      <ul class="pl-6 list-disc muted">
+        <li>be opted-in explicitly by the user</li>
+        <li>show a clear consent dialog describing exactly what will be uploaded</li>
+        <li>use encrypted transport (HTTPS) and be retained only as described</li>
+      </ul>
+
+      <h2>6. Third-Party Libraries & CDNs we use</h2>
+      <p class="muted">We rely on well-known client libraries to perform in-browser functionality. Examples include:</p>
+      <ul class="pl-6 list-disc muted">
+        <li><strong>pdf.js</strong> — PDF parsing & rendering</li>
+        <li><strong>pdf-lib / jsPDF</strong> — PDF create/write</li>
+        <li><strong>SheetJS (xlsx)</strong> — Excel export for PDF→Excel</li>
+        <li><strong>Tailwind CSS</strong> — UI styles (via CDN)</li>
+      </ul>
+      <p class="muted">These libraries are run inside the browser and do not, by themselves, receive your files. We keep library usage to the minimum necessary and monitor for security updates.</p>
+
+      <h2>7. Cookies & Similar Technologies</h2>
+      <p class="muted">We do not use tracking cookies or third-party advertising cookies. Minimal session cookies or localStorage may be used for UI preferences only (for example: selected theme). You can clear these from your browser at any time.</p>
+
+      <h2>8. Security Measures</h2>
+      <p class="muted">We take the following steps to protect service integrity:</p>
+      <ul class="pl-6 list-disc muted">
+        <li>Serve all pages over HTTPS</li>
+        <li>Use secure CDNs and keep libs up-to-date</li>
+        <li>Minimize privilege and avoid storing files on server</li>
+        <li>Sanitize user-provided filenames before download</li>
+        <li>Limit browser-side memory usage and provide graceful failure messages</li>
+      </ul>
+
+      <h2>9. Data Retention & Logs</h2>
+      <p class="muted">We retain only anonymized, aggregated metrics and short-lived error logs for debugging. These logs do <strong>not</strong> include file contents or personally identifying information and are automatically deleted after a retention period (typically 30–90 days).</p>
+
+      <h2>10. Children’s Privacy</h2>
+      <p class="muted">Our services are not designed for children under 16. We do not knowingly collect information from children. If you believe a child under 16 has provided information, contact us to request deletion.</p>
+
+      <h2>11. Your Rights (GDPR & CCPA)</h2>
+      <p class="muted"><strong>GDPR</strong> (EU users) — Because we do not collect personal data by default, most GDPR data subject requests are not applicable. If you have used an optional server-upload feature, you can request access, rectification, portability, or erasure of your uploaded data by contacting us.</p>
+      <p class="muted"><strong>CCPA</strong> (California residents) — You may request information about categories of personal data collected, and opt-out of sale. We do not sell personal data and do not create user profiles for marketing.</p>
+
+      <h2>12. How to Contact Us</h2>
+      <p class="muted">If you have questions, privacy requests, or security concerns, contact us:</p>
+      <ul class="pl-6 list-disc muted">
+        <li>Email: <a href="mailto:support@hyquantix.com" class="text-cyan-600">support@hyquantix.com</a></li>
+        <li>Address: Gautam Buddha Nagar, Uttar Pradesh, India</li>
+      </ul>
+
+      <h2>13. Changes to this Policy</h2>
+      <p class="muted">We may update this policy periodically. The "Last updated" date at the top will reflect changes. Important changes will be communicated on the site.</p>
+
+      <h2>Appendix A — Minimal Example: Local-only PDF → Excel flow (concept)</h2>
+      <p class="muted">Below is a high-level example (not full production code) showing the flow used by our PDF→Excel tool. This demonstrates the local-only processing — nothing is uploaded.</p>
+
+      <pre class="hl"><code>// 1) Read file
+const file = document.getElementById('pdfInput').files[0];
+const buffer = await file.arrayBuffer();
+
+// 2) Parse with pdf.js
+const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+
+// 3) Extract text & tables (simplified)
+const page = await pdf.getPage(1);
+const content = await page.getTextContent();
+// parse content.items into table rows (tool-specific logic)
+
+// 4) Build workbook with SheetJS
+const ws = XLSX.utils.aoa_to_sheet(parsedRows);
+const wb = XLSX.utils.book_new();
+XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+XLSX.writeFile(wb, 'extracted.xlsx');</code></pre>
+
+      <h2>Appendix B — Transparency & Auditability</h2>
+      <p class="muted">We keep a lightweight changelog and security disclosure page. Researchers who find vulnerabilities can report them to <a href="mailto:support@hyquantix.com" class="text-cyan-600">support@hyquantix.com</a>. We will evaluate reports and respond with remediation details.</p>
+
+    </article>
+
+    <!-- Contact CTA -->
+    <section class="mt-8 bg-white p-4 rounded-lg border text-sm">
+      <h3 class="font-semibold">Need help or want this customized?</h3>
+      <p class="muted">For legal, compliance or enterprise customization (private hosting, SOC/ISO requirements, or GDPR-specific features) contact us at <a href="mailto:support@hyquantix.com" class="text-cyan-600">support@hyquantix.com</a>.</p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-12 border-t bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-6 text-xs text-slate-500 text-center">
+      © 2025 Hytechsoft · Managed by
+      <a href="https://www.hyquantix.com" target="_blank" rel="noopener noreferrer" class="text-cyan-600 hover:text-cyan-700">Hyquantix Technologies</a>
+    </div>
+  </footer>
+
+  <!-- JSON-LD: Breadcrumb + SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Privacy Policy",
+    "url":"https://www.hytechsoft.com/privacy/",
+    "description":"Privacy policy for Hytechsoft Free Tools managed by Hyquantix Technologies."
+  }
+  </script>
+
+  <script>
+    // mobile menu toggle
+    document.getElementById('mobile-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>
