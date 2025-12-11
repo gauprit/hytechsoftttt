@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Terms of Service — Hytechsoft Free Tools (Managed by Hyquantix Technologies)</title>
+
+<meta name="description"
+  content="Detailed Terms of Service for Hytechsoft Free Tools, managed by Hyquantix Technologies. Covers liability, acceptable use, data handling, tool restrictions, warranties, disclaimers, GDPR/CCPA rights, and more.">
+
+<link rel="canonical" href="https://www.hytechsoft.com/terms/">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  .lead { color:#475569; }
+  .muted { color:#64748b; }
+  .pill {
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:999px;
+    background:#f0f9ff;
+    color:#0369a1;
+    font-size:12px;
+    font-weight:600;
+  }
+  pre.hl {
+    background:#0f172a;
+    color:#e2e8f0;
+    padding:14px;
+    border-radius:10px;
+    overflow:auto;
+  }
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+
+    <a href="/" class="flex items-center gap-3">
+      <img src="/logoW.jpg" alt="Hytechsoft" class="h-10 w-auto rounded-lg">
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="/tools" class="text-sm font-medium hover:text-cyan-600">Tools</a>
+      <a href="/about" class="text-sm font-medium hover:text-cyan-600">About</a>
+      <a href="/contact" class="text-sm font-medium hover:text-cyan-600">Contact</a>
+    </nav>
+
+    <button id="mobile-toggle" class="md:hidden p-2 rounded-lg bg-slate-100">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 6h16M4 12h16M4 18h16"
+          stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+    </button>
+
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white">
+    <div class="px-4 py-4 space-y-3">
+      <a href="/tools" class="block font-medium">Tools</a>
+      <a href="/about" class="block font-medium">About</a>
+      <a href="/contact" class="block font-medium">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="max-w-5xl mx-auto px-4 py-12">
+
+<section class="text-center mb-10">
+  <p class="pill mb-3">Legal Agreement · Acceptable Use · Liability</p>
+  <h1 class="text-2xl sm:text-3xl font-extrabold">Terms of Service</h1>
+  <p class="mt-2 lead text-sm max-w-xl mx-auto">
+    Last updated: <strong>January 2025</strong> — These terms govern the use of Hytechsoft Free Tools,
+    managed by Hyquantix Technologies. By using the tools, you agree to these Terms.
+  </p>
+</section>
+
+<section class="bg-white p-6 rounded-2xl border mb-8">
+  <h2 class="text-lg font-semibold">Summary of key points</h2>
+  <ul class="mt-3 space-y-2 muted text-sm">
+    <li>✔ Tools are provided free and “as is” with no warranty.</li>
+    <li>✔ File processing happens locally in your browser unless explicitly stated otherwise.</li>
+    <li>✔ You are responsible for legal and compliant usage.</li>
+    <li>✔ We are not liable for data loss, corruption, or business damages.</li>
+    <li>✔ Optional server features require explicit consent.</li>
+  </ul>
+</section>
+
+<article class="prose max-w-none">
+
+  <h2>1. Acceptance of Terms</h2>
+  <p class="muted">
+    By accessing or using Hytechsoft Free Tools, you agree to abide by this Terms of Service agreement (“Terms”).
+    If you do not agree, you must discontinue all use of the tools.
+  </p>
+
+  <h2>2. Description of Services</h2>
+  <p class="muted">
+    Hytechsoft provides free browser-based tools for PDF conversion, PDF compression, merging, QR generation,
+    GST calculation, invoice creation, text utilities, screen recording, and automation helpers. Functionality
+    may vary based on device/browser compatibility.
+  </p>
+
+  <h3 class="text-sm font-semibold">Service characteristics</h3>
+  <ul class="list-disc pl-6 muted">
+    <li>Most tools run entirely inside your browser (client-side).</li>
+    <li>No login or account is required.</li>
+    <li>No file upload occurs unless explicitly stated (OCR or cloud storage modules, if enabled).</li>
+    <li>Tools may update or change without notice.</li>
+  </ul>
+
+  <h2>3. User Responsibilities</h2>
+  <p class="muted">You agree to use the tools lawfully and responsibly. You must NOT:</p>
+  <ul class="list-disc pl-6 muted">
+    <li>Upload malicious, harmful, or illegal files.</li>
+    <li>Attempt to reverse-engineer, scrape, or disassemble internal functionality.</li>
+    <li>Use QR codes, PDF generation, or invoice tools for fraudulent or deceptive purposes.</li>
+    <li>Use the tools to circumvent local or international regulations.</li>
+  </ul>
+
+  <h2>4. File Handling & Processing</h2>
+  <p class="muted">
+    Most processing occurs locally in your browser via HTML5, Canvas, WebAssembly, and client-side libraries.
+    This architecture ensures your files do not leave your device unless:
+  </p>
+  <ul class="pl-6 list-disc muted">
+    <li>You explicitly choose an upload-based feature (e.g., OCR, server compression).</li>
+    <li>The tool states that a server-side module is required.</li>
+  </ul>
+
+  <h3 class="text-sm font-semibold mt-3">Client-side example (PDF processing)</h3>
+  <pre class="hl"><code>// Example: client-side PDF parsing with pdf.js
+const file = input.files[0];
+const buffer = await file.arrayBuffer();
+const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+// All processing happens locally — no upload.</code></pre>
+
+  <h2>5. Availability of Services</h2>
+  <p class="muted">We do not guarantee uninterrupted availability. Tools may be modified, discontinued, or temporarily disabled—without liability.</p>
+
+  <h2>6. Intellectual Property</h2>
+  <p class="muted">
+    All UI design, branding, tool logic, layout, documentation, and source code belong to
+    Hyquantix Technologies. You may not copy, resell, embed, or replicate these tools without written permission.
+  </p>
+
+  <h2>7. Disclaimer of Warranties</h2>
+  <p class="muted"><strong>THE TOOLS ARE PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND.</strong></p>
+  <p class="muted">This includes, but is not limited to:</p>
+  <ul class="list-disc pl-6 muted">
+    <li>No guarantee of accuracy in generated PDFs, Excel files, QR codes, or calculations.</li>
+    <li>No guarantee that files will remain intact or uncorrupted.</li>
+    <li>No guarantee of availability or performance.</li>
+    <li>No legal or financial guarantee for output used for business purposes.</li>
+  </ul>
+
+  <h2>8. Limitation of Liability</h2>
+  <p class="muted">To the fullest extent permitted by law, Hytechsoft & Hyquantix Technologies are NOT liable for:</p>
+  <ul class="list-disc pl-6 muted">
+    <li>Data loss or corruption</li>
+    <li>Business or financial loss</li>
+    <li>Inaccurate calculations (GST, invoices, conversions)</li>
+    <li>Loss of profits or revenue</li>
+    <li>Damages resulting from misuse of tools</li>
+    <li>Exposure of confidential files used on shared devices</li>
+  </ul>
+
+  <h2>9. Optional Cloud Processing & User Consent</h2>
+  <p class="muted">
+    Some advanced features (OCR, AI extraction, heavy compression, large PDF merging) may require uploading
+    files to a secure server. These features:
+  </p>
+  <ul class="list-disc pl-6 muted">
+    <li>are optional, not enabled by default</li>
+    <li>will present a clear consent dialog</li>
+    <li>process files only for the duration of the task</li>
+    <li>delete files automatically after processing</li>
+  </ul>
+
+  <h2>10. Third-Party Libraries</h2>
+  <p class="muted">We use industry-standard libraries such as:</p>
+  <ul class="list-disc pl-6 muted">
+    <li>PDF.js</li>
+    <li>pdf-lib / jsPDF</li>
+    <li>SheetJS (xlsx)</li>
+    <li>Tailwind CSS</li>
+    <li>Browser APIs (Canvas, MediaRecorder, WebGL)</li>
+  </ul>
+  <p class="muted">These libraries do not send files to external servers by default.</p>
+
+  <h2>11. Compliance (GDPR / CCPA)</h2>
+
+  <h3>GDPR</h3>
+  <p class="muted">
+    Since we do not collect personal data for most tools, GDPR data rights typically do not apply.
+    If optional upload features are used, users may request:
+  </p>
+  <ul class="list-disc pl-6 muted">
+    <li>Access</li>
+    <li>Rectification</li>
+    <li>Deletion</li>
+    <li>Portability</li>
+  </ul>
+
+  <h3>CCPA</h3>
+  <p class="muted">
+    We do not sell personal information. Users may request categories of data collected (usually none).
+  </p>
+
+  <h2>12. Termination & Suspension</h2>
+  <p class="muted">
+    We may restrict or block access without notice if a user violates these Terms, attempts to attack our
+    systems, abuses services, or performs illegal activity.
+  </p>
+
+  <h2>13. Governing Law</h2>
+  <p class="muted">These Terms are governed by the laws of India. Any disputes will be handled in the courts of Uttar Pradesh, India.</p>
+
+  <h2>14. Contact Information</h2>
+  <p class="muted">
+    Questions or legal notices may be sent to:
+    <br>Email: <a href="mailto:support@hyquantix.com" class="text-cyan-600">support@hyquantix.com</a>
+    <br>Website: <a href="https://www.hyquantix.com" class="text-cyan-600">www.hyquantix.com</a>
+  </p>
+
+</article>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t bg-white mt-16">
+  <div class="max-w-6xl mx-auto px-4 py-6 text-xs text-center text-slate-500">
+    © 2025 Hytechsoft · Managed by
+    <a href="https://www.hyquantix.com" class="text-cyan-600 hover:text-cyan-700">Hyquantix Technologies</a>
+  </div>
+</footer>
+
+<!-- JSON-LD Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "url": "https://www.hytechsoft.com/terms/",
+  "name": "Terms of Service — Hytechsoft",
+  "description": "Official Terms of Service for Hytechsoft Free Tools managed by Hyquantix Technologies.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hytechsoft",
+    "url": "https://www.hytechsoft.com"
+  }
+}
+</script>
+
+<script>
+document.getElementById("mobile-toggle").onclick = () =>
+  document.getElementById("mobile-menu").classList.toggle("hidden");
+</script>
+
+</body>
+</html>
