@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Advanced PDF Compressor — Hytechsoft</title>
+<meta name="description" content="Advanced PDF Compressor — auto target-size compression + manual controls (DPI, scale, JPEG quality). 100% browser-side, privacy-first.">
+
+<link rel="canonical" href="https://www.hytechsoft.com/pdf-compressor/" />
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph (optional - replace image URL if you have one) -->
+<meta property="og:title" content="Advanced PDF Compressor — Hytechsoft" />
+<meta property="og:description" content="Compress PDF files in your browser. Auto target-size or manual control. No server upload." />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  /* small helpers */
+  .tab-btn { padding: .5rem 0.9rem; border-radius: 999px; border: 1px solid #e6edf3; }
+  .tab-btn.active { background: #06b6d4; color: white; border-color: #06b6d4; }
+  /* ensure large tap targets */
+  input[type="range"] { height: 36px; }
+  .small-note { font-size: 12px; color: #64748b; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+<!-- ================= HEADER (reusable) ================= -->
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <img src="logoW.jpg" alt="Hytechsoft" class="h-10 w-auto rounded-lg">
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="/tools" class="text-sm font-medium text-slate-700 hover:text-cyan-600">Tools</a>
+      <a href="/about" class="text-sm font-medium text-slate-700 hover:text-cyan-600">About</a>
+      <a href="/contact" class="text-sm font-medium text-slate-700 hover:text-cyan-600">Contact</a>
+      <a href="/impact"
+         class="ml-2 inline-flex items-center px-4 py-2 rounded-full bg-cyan-600 text-white text-sm font-semibold">
+        Get Help
+      </a>
+    </nav>
+
+    <button id="mobile-toggle" class="md:hidden p-2 rounded-lg bg-slate-100" aria-label="Open menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16"
+          stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="md:hidden hidden border-t border-slate-100 bg-white">
+    <div class="px-4 py-4 space-y-3">
+      <a href="/tools" class="block font-medium">Tools</a>
+      <a href="/about" class="block font-medium">About</a>
+      <a href="/contact" class="block font-medium">Contact</a>
+      <a href="/impact" class="block font-medium text-cyan-600">Get Help</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="max-w-xl mx-auto px-4 py-10">
+
+  <!-- HERO -->
+  <section class="text-center mb-6">
+    <p class="inline-block mb-3 px-4 py-1.5 rounded-full bg-cyan-50 text-cyan-700 text-xs font-semibold tracking-wide">
+      Advanced • Mobile-Friendly • Privacy-First
+    </p>
+    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Advanced PDF Compressor</h1>
+    <p class="mt-2 text-slate-600 text-sm max-w-xl mx-auto">
+      Choose a target size and let the Auto mode do the work — or fine-tune DPI, scale and JPEG quality in Advanced mode.
+      Everything runs in your browser; files never leave your device.
+    </p>
+  </section>
+
+  <!-- TOOL CARD -->
+  <section class="bg-white border border-slate-200 rounded-2xl p-5 space-y-4 shadow-sm">
+
+    <!-- File Upload -->
+    <div>
+      <label class="text-sm font-medium text-slate-700">Upload PDF</label>
+      <input id="pdfInput" type="file" accept="application/pdf" class="mt-2 w-full px-3 py-3 border rounded-xl bg-slate-50">
+      <p class="small-note mt-1">Best results for scanned or image-heavy PDFs. Large files may take a while on mobile.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="mt-2 flex gap-2">
+      <button id="tabAuto" class="tab-btn active">Auto (Target Size)</button>
+      <button id="tabManual" class="tab-btn">Advanced</button>
+    </div>
+
+    <!-- AUTO MODE -->
+    <div id="autoMode" class="mt-3 space-y-3">
+      <label class="text-sm font-medium text-slate-700">Target file size</label>
+      <div class="grid grid-cols-3 gap-2">
+        <button class="target-btn px-3 py-2 rounded-lg border" data-bytes="300000">300 KB</button>
+        <button class="target-btn px-3 py-2 rounded-lg border" data-bytes="500000">500 KB</button>
+        <button class="target-btn px-3 py-2 rounded-lg border" data-bytes="1000000">1 MB</button>
+      </div>
+
+      <div class="mt-2 flex gap-2">
+        <input id="customTarget" type="number" min="50" placeholder="Custom KB" class="w-2/3 px-3 py-2 rounded-xl border" />
+        <select id="customUnit" class="w-1/3 px-3 py-2 rounded-xl border">
+          <option value="KB">KB</option>
+          <option value="MB">MB</option>
+        </select>
+      </div>
+
+      <div class="mt-2 text-xs text-slate-500">
+        <strong>Note:</strong> Auto mode will try multiple passes to reach the target. It may trade image quality and resolution to fit within limits.
+      </div>
+    </div>
+
+    <!-- MANUAL MODE -->
+    <div id="manualMode" class="mt-3 hidden space-y-3">
+      <div>
+        <label class="text-sm font-medium text-slate-700">Render Scale</label>
+        <input id="manualScale" type="range" min="0.5" max="1.4" step="0.1" value="1" class="w-full">
+        <div class="flex justify-between text-xs text-slate-500">
+          <span>0.5</span><span>1.4</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm font-medium text-slate-700">JPEG Quality</label>
+        <input id="manualQuality" type="range" min="0.4" max="1" step="0.05" value="0.8" class="w-full">
+        <div class="flex justify-between text-xs text-slate-500"><span>0.4</span><span>1.0</span></div>
+      </div>
+
+      <div>
+        <label class="text-sm font-medium text-slate-700">DPI (informational)</label>
+        <select id="manualDPI" class="w-full px-3 py-2 rounded-xl border">
+          <option value="300">300</option>
+          <option value="200" selected>200</option>
+          <option value="150">150</option>
+          <option value="100">100</option>
+          <option value="72">72</option>
+        </select>
+        <div class="text-xs text-slate-500 mt-1">Higher DPI preserves detail but increases size.</div>
+      </div>
+    </div>
+
+    <!-- Options -->
+    <div class="grid grid-cols-2 gap-2">
+      <label class="flex items-center gap-2 text-sm"><input id="keepMetadata" type="checkbox" checked> Keep metadata</label>
+      <label class="flex items-center gap-2 text-sm"><input id="preserveAspect" type="checkbox" checked> Preserve aspect ratio</label>
+    </div>
+
+    <!-- Buttons -->
+    <div class="grid grid-cols-2 gap-3 mt-2">
+      <button id="compressBtn" class="py-3 px-3 rounded-xl bg-cyan-600 text-white font-semibold hover:bg-cyan-700">Start</button>
+      <button id="downloadBtn" class="py-3 px-3 rounded-xl bg-slate-100 hover:bg-slate-200" disabled>Download</button>
+    </div>
+
+    <!-- Progress -->
+    <div id="progressWrap" class="mt-3 hidden">
+      <div class="text-sm text-slate-600" id="progressText">Preparing…</div>
+      <div class="w-full bg-slate-100 rounded-full h-2 mt-2 overflow-hidden">
+        <div id="progressBar" class="h-2 bg-cyan-500" style="width:0%"></div>
+      </div>
+      <div class="mt-2 text-xs text-slate-500" id="estInfo"></div>
+    </div>
+
+  </section>
+
+  <!-- SEO / Info -->
+  <section class="mt-6 text-sm text-slate-600 space-y-3">
+    <h3 class="font-semibold text-slate-800">How Auto mode works</h3>
+    <p>Auto mode attempts multiple compression passes — decreasing resolution and JPEG quality — until the output file meets your target or the attempts limit is reached.</p>
+    <p class="small-note">If you need lossless or 100% fidelity for complex PDF layouts, use a desktop tool. This in-browser compressor is ideal for scanned/image PDFs and quick sharing.</p>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="mt-16 border-t bg-white">
+  <div class="max-w-6xl mx-auto px-4 py-6 text-xs text-slate-500 text-center">
+    © 2025 Hytechsoft · Managed by
+    <a href="https://www.hyquantix.com" target="_blank" rel="noopener noreferrer" class="text-cyan-600 hover:text-cyan-700 font-medium">Hyquantix Technologies</a>
+  </div>
+</footer>
+
+<!-- ================= SCRIPTS ================= -->
+<script>
+document.getElementById("mobile-toggle").onclick = () =>
+  document.getElementById("mobile-menu").classList.toggle("hidden");
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+// UI refs
+const pdfInput = document.getElementById("pdfInput");
+const compressBtn = document.getElementById("compressBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+
+const tabAuto = document.getElementById("tabAuto");
+const tabManual = document.getElementById("tabManual");
+const autoMode = document.getElementById("autoMode");
+const manualMode = document.getElementById("manualMode");
+
+const customTarget = document.getElementById("customTarget");
+const customUnit = document.getElementById("customUnit");
+const manualScale = document.getElementById("manualScale");
+const manualQuality = document.getElementById("manualQuality");
+
+const progressWrap = document.getElementById("progressWrap");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+
+// Tabs
+tabAuto.onclick = () => {
+  tabAuto.classList.add("active");
+  tabManual.classList.remove("active");
+  autoMode.classList.remove("hidden");
+  manualMode.classList.add("hidden");
+};
+
+tabManual.onclick = () => {
+  tabManual.classList.add("active");
+  tabAuto.classList.remove("active");
+  autoMode.classList.add("hidden");
+  manualMode.classList.remove("hidden");
+};
+
+function bytesToKB(b) { return Math.round(b / 1024); }
+
+// Main Compressor
+async function compressPDF(file, scale, quality) {
+  const buffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+
+  const { jsPDF } = window.jspdf;
+  let doc;
+
+  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+    progressText.textContent = `Processing page ${pageNum}/${pdf.numPages}...`;
+    progressBar.style.width = (pageNum / pdf.numPages) * 100 + "%";
+
+    const page = await pdf.getPage(pageNum);
+    const viewport = page.getViewport({ scale });
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+
+    await page.render({ canvasContext: ctx, viewport }).promise;
+
+    const img = canvas.toDataURL("image/jpeg", quality);
+
+    if (pageNum === 1) {
+      doc = new jsPDF({
+        orientation: viewport.width > viewport.height ? "l" : "p",
+        unit: "pt",
+        format: [viewport.width, viewport.height],
+      });
+    } else {
+      doc.addPage([viewport.width, viewport.height]);
+      doc.setPage(pageNum);
+    }
+
+    doc.addImage(img, "JPEG", 0, 0, viewport.width, viewport.height);
+
+    // Clean memory
+    canvas.width = 1;
+    canvas.height = 1;
+  }
+
+  return doc.output("blob");
+}
+
+// AUTO MODE — safe 3-pass logic
+async function autoCompress(file, targetKB) {
+  const targetBytes = targetKB * 1024;
+
+  const attempts = [
+    { scale: 1.0, quality: 0.85 },
+    { scale: 0.85, quality: 0.75 },
+    { scale: 0.70, quality: 0.60 },
+  ];
+
+  let bestBlob = null;
+  let bestSize = Infinity;
+
+  for (let i = 0; i < attempts.length; i++) {
+    const { scale, quality } = attempts[i];
+
+    progressText.textContent = `Attempt ${i + 1} of 3...`;
+    const blob = await compressPDF(file, scale, quality);
+
+    const size = blob.size;
+
+    // store best
+    if (size < bestSize) {
+      bestBlob = blob;
+      bestSize = size;
+    }
+
+    // target met
+    if (size <= targetBytes) {
+      return blob;
+    }
+  }
+
+  return bestBlob;
+}
+
+// ORCHESTRATION
+compressBtn.onclick = async () => {
+  if (!pdfInput.files.length) return alert("Upload a PDF first!");
+
+  const file = pdfInput.files[0];
+
+  progressWrap.classList.remove("hidden");
+  progressBar.style.width = "0%";
+  downloadBtn.disabled = true;
+
+  let resultBlob;
+
+  if (tabAuto.classList.contains("active")) {
+    // AUTO
+    const target = Number(customTarget.value) || 500; // fallback 500 KB
+    progressText.textContent = "Starting auto compression...";
+    resultBlob = await autoCompress(file, target);
+  } else {
+    // MANUAL
+    const scale = Number(manualScale.value);
+    const quality = Number(manualQuality.value);
+    progressText.textContent = "Compressing (manual mode)...";
+    resultBlob = await compressPDF(file, scale, quality);
+  }
+
+  const sizeKB = bytesToKB(resultBlob.size);
+  progressText.textContent = `Done: ${sizeKB} KB`;
+
+  const url = URL.createObjectURL(resultBlob);
+  downloadBtn.disabled = false;
+  downloadBtn.onclick = () => {
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "compressed.pdf";
+    a.click();
+  };
+};
+</script>
+
+
+</body>
+</html>
