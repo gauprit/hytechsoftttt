@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+  <title>Free Online Invoice Generator | GST Compliant | Hytechsoft</title>
+  <meta name="description" content="Create professional, GST-compliant invoices for free. No login required. Customize branding, add logos, and download as PDF instantly. Privacy-first browser-based tool.">
+  <meta name="keywords" content="free invoice generator, online invoice maker, GST invoice India, professional invoice PDF, no login invoice creator">
+  
+  <meta property="og:title" content="Professional Invoice Generator by Hytechsoft">
+  <meta property="og:description" content="The fastest way to create professional invoices. 100% Free & Privacy-Focused.">
+  <meta property="og:url" content="https://hytechsoft.com/invoice-generator">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Hytechsoft Invoice Pro",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    /* Fixes for A4 Printing */
+    @media print {
+      @page { size: A4 portrait; margin: 0; }
+      body { background: white !important; margin: 0; padding: 0; }
+      .print-area { 
+        width: 210mm !important; 
+        height: 297mm !important; 
+        padding: 20mm !important; 
+        border: none !important; 
+        box-shadow: none !important; 
+        margin: 0 auto !important; 
+      }
+      .no-print { display: none !important; }
+      input, textarea { border: none !important; background: transparent !important; }
+      .accent-bg { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+<header class="sticky top-0 z-50 w-full border-b border-slate-200/60 bg-white/70 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <a href="/" class="flex items-center gap-3 group">
+  <div class="relative h-12 w-12 flex items-center justify-center">
+    <div class="absolute inset-0 rounded-full bg-slate-50 border border-slate-100 shadow-inner"></div>
+    
+    <div class="grid grid-cols-2 gap-0.5 p-2 transform group-hover:scale-110 transition-transform duration-500">
+      <div class="h-3 w-3 rounded-full bg-cyan-600"></div>
+      <div class="h-3 w-3 rounded-full bg-indigo-500"></div>
+      <div class="h-3 w-3 rounded-full bg-blue-400"></div>
+      <div class="h-3 w-3 rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
+         <span class="text-[8px] text-white font-bold italic">h</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center">
+    <div class="flex flex-col pr-4 border-r border-slate-200">
+      <span class="text-2xl font-black text-slate-900 tracking-tighter leading-none italic">HytechSoft</span>
+    
+    </div>
+    <div class="pl-4">
+      <span class="text-[10px] font-medium text-slate-500 leading-tight block">Innovating<br>Intelligence</span>
+    </div>
+  </div>
+</a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#compilers" class="text-sm font-semibold text-slate-600 hover:text-cyan-600 transition-colors">Compilers</a>
+        <a href="#tools" class="text-sm font-semibold text-slate-600 hover:text-cyan-600 transition-colors">Tools</a>
+        <a href="#contact" class="text-sm font-semibold text-slate-600 hover:text-cyan-600 transition-colors">Support</a>
+        <a href="/impact" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-slate-800 transition-all active:scale-95 shadow-lg shadow-slate-200">
+          Get Help
+        </a>
+      </nav>
+
+      <button id="mobile-toggle" class="md:hidden p-2 text-slate-600">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 py-6 space-y-4 shadow-xl">
+    <a href="#compilers" class="block text-lg font-semibold text-slate-900">Compilers</a>
+    <a href="#tools" class="block text-lg font-semibold text-slate-900">Tools</a>
+    <a href="#contact" class="block text-lg font-semibold text-slate-900">Support</a>
+  </div>
+</header>
+
+<main class="max-w-[1400px] mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+  
+  <aside class="no-print lg:col-span-4 space-y-6">
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+      <h2 class="font-black text-slate-900 text-lg mb-4 flex items-center gap-2">
+        <span class="w-1.5 h-6 bg-cyan-600 rounded-full"></span> Customization
+      </h2>
+      
+      <div class="space-y-6">
+        <div>
+          <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Accent Color</label>
+          <div class="flex items-center gap-3">
+            <input type="color" id="accent-color" value="#0891b2" oninput="updateColor(this.value)" class="w-12 h-12 rounded-xl cursor-pointer bg-transparent border-2 border-slate-100 p-1">
+            <span class="text-xs font-bold text-slate-500">Match your brand</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Company Logo</label>
+          <input type="file" onchange="previewLogo(event)" class="text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-cyan-50 file:text-cyan-700 hover:file:bg-cyan-100">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 pt-4">
+          <div>
+            <label class="block text-[10px] font-black text-slate-400 uppercase mb-2">Currency</label>
+            <select id="currency" onchange="updateCurrency()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm font-bold">
+              <option value="₹">INR (₹)</option>
+              <option value="$">USD ($)</option>
+              <option value="€">EUR (€)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[10px] font-black text-slate-400 uppercase mb-2">GST (%)</label>
+            <input type="number" id="tax-rate" value="18" oninput="calculateTotal()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm font-bold">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden lg:block bg-slate-100/50 p-6 rounded-2xl text-[10px] text-slate-400 leading-relaxed border border-slate-200">
+      <h3 class="font-bold mb-1">About our Invoice Tool</h3>
+      <p>This professional <strong>invoice generator</strong> helps Indian freelancers and startups create <strong>GST compliant tax invoices</strong>. It is a <strong>privacy-first</strong> tool, meaning no data leaves your browser. 100% free with no login required.</p>
+    </div>
+  </aside>
+
+  <section class="lg:col-span-8">
+    <div class="print-area bg-white rounded-xl shadow-2xl border border-slate-200 min-h-[297mm] w-full max-w-[210mm] mx-auto p-12 transition-all overflow-hidden" id="invoice">
+      
+      <div class="flex justify-between items-start mb-16">
+        <div class="space-y-6">
+          <div id="logo-container" class="h-20 w-48 bg-slate-50 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-200 text-slate-300 text-[10px] italic">
+            Company Logo
+          </div>
+          <h1 class="text-4xl font-black tracking-tighter text-slate-900 uppercase">Tax Invoice</h1>
+        </div>
+        
+        <div class="text-right space-y-4">
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Invoice Number</p>
+            <input type="text" value="INV-2025-001" class="text-right font-black text-slate-900 focus:outline-none bg-transparent w-full">
+          </div>
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Date of Issue</p>
+            <input type="date" value="2025-12-20" class="text-right font-black text-slate-900 focus:outline-none bg-transparent w-full">
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-16 mb-16">
+        <div class="space-y-4">
+          <p class="text-[10px] font-black text-cyan-600 uppercase tracking-widest flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-cyan-600"></span> From
+          </p>
+          <textarea placeholder="Your Company Name&#10;Address Line 1&#10;GSTIN: 123456789" rows="4" class="w-full text-sm font-medium text-slate-600 focus:outline-none leading-relaxed bg-transparent resize-none"></textarea>
+        </div>
+        <div class="space-y-4">
+          <p class="text-[10px] font-black text-cyan-600 uppercase tracking-widest flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-cyan-600"></span> Bill To
+          </p>
+          <textarea placeholder="Client Name&#10;Client Address&#10;GSTIN (Optional)" rows="4" class="w-full text-sm font-medium text-slate-600 focus:outline-none leading-relaxed bg-transparent resize-none"></textarea>
+        </div>
+      </div>
+
+      <table class="w-full mb-8 border-collapse" style="table-layout: fixed;">
+        <thead>
+          <tr class="bg-slate-900 text-white accent-bg">
+            <th style="width: 50%;" class="text-left p-4 rounded-l-2xl text-[10px] font-black uppercase tracking-widest">Description</th>
+            <th style="width: 10%;" class="text-center p-4 text-[10px] font-black uppercase tracking-widest">Qty</th>
+            <th style="width: 20%;" class="text-right p-4 text-[10px] font-black uppercase tracking-widest">Rate</th>
+            <th style="width: 20%;" class="text-right p-4 rounded-r-2xl text-[10px] font-black uppercase tracking-widest">Amount</th>
+          </tr>
+        </thead>
+        <tbody id="item-rows">
+          <tr class="border-b border-slate-100">
+            <td class="p-4 py-6">
+              <input type="text" placeholder="Service or Product Name" class="w-full font-bold text-slate-800 focus:outline-none bg-transparent">
+            </td>
+            <td class="p-4">
+              <input type="number" value="1" oninput="calculateTotal()" class="qty w-full text-center font-bold focus:outline-none bg-transparent">
+            </td>
+            <td class="p-4">
+              <input type="number" value="0" oninput="calculateTotal()" class="rate w-full text-right font-bold focus:outline-none bg-transparent">
+            </td>
+            <td class="p-4 text-right font-black amount text-slate-900">0.00</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button onclick="addRow()" class="no-print mb-12 inline-flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-xl text-[10px] font-black text-slate-600 uppercase hover:bg-slate-100 transition-all">
+        + Add Line Item
+      </button>
+
+      <div class="flex justify-end mb-20">
+        <div class="w-full max-w-[320px] bg-slate-50 p-6 rounded-[2rem] space-y-4">
+          <div class="flex justify-between text-xs font-bold text-slate-500">
+            <span>Subtotal</span>
+            <span id="subtotal">0.00</span>
+          </div>
+          <div class="flex justify-between text-xs font-bold text-slate-500">
+            <span>GST (<span id="tax-display">18</span>%)</span>
+            <span id="tax-amount">0.00</span>
+          </div>
+          <div class="flex justify-between items-center pt-4 border-t border-slate-200">
+            <span class="font-black text-slate-900 uppercase text-xs tracking-widest">Grand Total</span>
+            <span class="text-3xl font-black text-slate-900" id="total-due">0.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-auto border-t border-slate-100 pt-8">
+        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Notes & Payment Terms</p>
+        <textarea rows="3" class="w-full text-sm font-medium text-slate-500 focus:outline-none bg-transparent resize-none">Standard payment terms: 15 Days. Please include invoice number on your remittance.</textarea>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script>
+  let symbol = "₹";
+
+  function updateColor(color) {
+    const accElements = document.querySelectorAll('.accent-bg');
+    accElements.forEach(el => el.style.backgroundColor = color);
+    const textElements = document.querySelectorAll('.text-cyan-600');
+    textElements.forEach(el => el.style.color = color);
+  }
+
+  function previewLogo(event) {
+    const reader = new FileReader();
+    reader.onload = function(){
+      const output = document.getElementById('logo-container');
+      output.innerHTML = `<img src="${reader.result}" class="max-h-full max-w-full rounded-lg">`;
+      output.style.border = 'none';
+      output.style.background = 'transparent';
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  function updateCurrency() {
+    symbol = document.getElementById('currency').value;
+    calculateTotal();
+  }
+
+  function addRow() {
+    const tbody = document.getElementById('item-rows');
+    const row = document.createElement('tr');
+    row.className = "border-b border-slate-100";
+    row.innerHTML = `
+      <td class="p-4 py-6"><input type="text" placeholder="Service Name" class="w-full font-bold focus:outline-none bg-transparent"></td>
+      <td class="p-4"><input type="number" value="1" oninput="calculateTotal()" class="qty w-full text-center font-bold focus:outline-none bg-transparent"></td>
+      <td class="p-4"><input type="number" value="0" oninput="calculateTotal()" class="rate w-full text-right font-bold focus:outline-none bg-transparent"></td>
+      <td class="p-4 text-right font-black amount text-slate-900">0.00</td>
+    `;
+    tbody.appendChild(row);
+  }
+
+  function calculateTotal() {
+    const rows = document.querySelectorAll('#item-rows tr');
+    let subtotal = 0;
+    const taxRate = parseFloat(document.getElementById('tax-rate').value) || 0;
+
+    rows.forEach(row => {
+      const qty = parseFloat(row.querySelector('.qty').value) || 0;
+      const rate = parseFloat(row.querySelector('.rate').value) || 0;
+      const amount = qty * rate;
+      row.querySelector('.amount').textContent = symbol + amount.toLocaleString('en-IN', {minimumFractionDigits: 2});
+      subtotal += amount;
+    });
+
+    const taxAmount = (subtotal * taxRate) / 100;
+    const total = subtotal + taxAmount;
+
+    document.getElementById('subtotal').textContent = symbol + subtotal.toLocaleString('en-IN', {minimumFractionDigits: 2});
+    document.getElementById('tax-display').textContent = taxRate;
+    document.getElementById('tax-amount').textContent = symbol + taxAmount.toLocaleString('en-IN', {minimumFractionDigits: 2});
+    document.getElementById('total-due').textContent = symbol + total.toLocaleString('en-IN', {minimumFractionDigits: 2});
+  }
+</script>
+
+</body>
+</html>
