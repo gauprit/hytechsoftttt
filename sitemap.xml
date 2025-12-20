@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://hytechsoft.com/</loc>
+    <lastmod>2025-12-20</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://hytechsoft.com/invoice-generator.html</loc>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://hytechsoft.com/gst-calculator/</loc>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://hytechsoft.com/pdf-compressor/</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://hytechsoft.com/screen-recorder/</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://hytechsoft.com/python-compiler/</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://hytechsoft.com/qr-generator/</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://hytechsoft.com/pdf-merge/</loc>
+    <priority>0.80</priority>
+  </url>
+</urlset>
