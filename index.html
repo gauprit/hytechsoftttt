@@ -7,58 +7,6 @@
   
   <meta name="description" content="Free business tools by Hytechsoft: invoice generator, GST calculator, PDF tools, and online compilers. No login required.">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Hytechsoft Productivity Suite",
-  "operatingSystem": "All",
-  "applicationCategory": "BusinessApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "12480"
-  },
-  "author": {
-    "@type": "Organization",
-    "name": "Hyquantix Technologies",
-    "url": "https://www.hyquantix.com"
-  }
-}
-</script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "How to calculate GST for service exports from India?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Service exports are treated as Zero-Rated Supplies under GST. You can export using a Letter of Undertaking (LUT) without paying IGST, or pay IGST and claim a refund. Hytechsoft provides a free calculator to verify these amounts instantly."
-    }
-  }, {
-    "@type": "Question",
-    "name": "Is Hytechsoft safe for my business data?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Yes, Hytechsoft is 100% privacy-first. All tools are browser-native, meaning your data is processed on your device and never sent to our servers."
-    }
-  }, {
-    "@type": "Question",
-    "name": "Do I need to login to create an invoice?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "No, Hytechsoft provides a 'No Friction' experience. You can generate professional PDF invoices, calculate GST, and compress PDFs without any signup or registration."
-    }
-  }]
-}
-</script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -356,111 +304,312 @@
 </section>
 
 
- <section id="tools" class="py-24 relative overflow-hidden bg-white">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  :root {
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-border: rgba(226, 232, 240, 0.8);
+  }
+
+  .tool-card-lg {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+  }
+
+  .tool-card-lg:hover {
+    transform: translateY(-8px);
+    background: white;
+    border-color: currentColor; /* Inherits the icon's color */
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.08);
+  }
+
+  .icon-wrapper {
+    transition: all 0.5s ease;
+  }
+
+  .tool-card-lg:hover .icon-wrapper {
+    transform: scale(1.1) rotate(-5deg);
+  }
+
+  .tool-card-lg:hover h3 {
+    letter-spacing: -0.01em;
+  }
+</style>
+
+<section id="tools" class="py-28 relative overflow-hidden bg-[#f8fafc]">
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
-    <div class="absolute top-10 left-[10%] w-72 h-72 bg-cyan-50 rounded-full blur-[100px] opacity-60"></div>
-    <div class="absolute bottom-10 right-[10%] w-96 h-96 bg-indigo-50 rounded-full blur-[100px] opacity-60"></div>
+    <div class="absolute top-[-10%] left-[10%] w-[500px] h-[500px] bg-cyan-100/40 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-[-10%] right-[10%] w-[600px] h-[600px] bg-indigo-100/40 rounded-full blur-[150px]"></div>
   </div>
 
   <div class="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-20 relative z-10">
     
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8 text-center md:text-left">
       <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-600 text-[10px] font-black uppercase tracking-[0.2em] mb-4">
-          Enterprise Toolkit
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.3em] mb-4">
+          Professional Toolkit
         </div>
-        <h2 class="text-4xl md:text-5xl font-[900] text-slate-900 tracking-tight">
+        <h2 class="text-4xl md:text-6xl font-[900] text-slate-900 tracking-tight leading-none">
           Productivity <span class="text-cyan-600 italic">Suite</span>
         </h2>
-        <p class="text-slate-500 mt-4 text-lg font-medium max-w-xl">
-          A comprehensive ecosystem of browser-native tools designed for speed, privacy, and precision.
+        <p class="text-slate-500 mt-6 text-xl font-medium max-w-2xl leading-relaxed">
+          Unlock peak efficiency with our high-performance, privacy-focused tool ecosystem.
         </p>
       </div>
       
-      <div class="flex bg-slate-50 p-1.5 rounded-2xl border border-slate-200 shadow-sm">
-        <button class="px-8 py-2.5 bg-white text-slate-900 rounded-xl text-sm font-bold shadow-sm border border-slate-200 transition-all hover:bg-slate-900 hover:text-white">
-          All Tools
+      <div class="flex bg-white/50 backdrop-blur-md p-1.5 rounded-2xl border border-slate-200 shadow-sm">
+        <button class="px-10 py-3 bg-slate-900 text-white rounded-xl text-sm font-bold shadow-lg transition-all active:scale-95">
+          Local Tools
         </button>
-        <button class="px-8 py-2.5 text-slate-500 hover:text-slate-900 text-sm font-bold">
-          Cloud Tools
+        <button class="px-10 py-3 text-slate-500 hover:text-slate-900 text-sm font-bold transition-colors">
+          Cloud APIs
         </button>
       </div>
     </div>
 
-    <div id="tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+    <div id="tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
       
-      <a href="/invoice-generator/" class="tool-card group bg-white border border-slate-200/60 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-100/50 hover:-translate-y-3">
-        <div class="text-4xl mb-6 w-16 h-16 bg-cyan-50 rounded-2xl flex items-center justify-center group-hover:bg-cyan-600 group-hover:text-white transition-all duration-500 shadow-inner">
-          🧾
+      <a href="/invoice-generator.html" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-cyan-600">
+        <div class="icon-wrapper w-16 h-16 bg-cyan-50 text-cyan-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-cyan-600 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-file-invoice text-3xl"></i>
         </div>
-        <h3 class="font-black text-xl text-slate-900 mb-2">Invoice Pro</h3>
-        <p class="text-slate-500 text-sm leading-relaxed mb-6">Create professional PDF & CSV invoices instantly.</p>
-        <span class="text-xs font-black text-cyan-600 uppercase tracking-widest flex items-center gap-2">Explore <span class="group-hover:translate-x-2 transition-transform">→</span></span>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">Invoice Pro</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">Create professional PDF & CSV invoices with smart tax calculations.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Launch Tool <i class="fa-solid fa-arrow-right"></i>
+        </div>
       </a>
 
-      <a href="/gst-calculator/" class="tool-card group bg-white border border-slate-200/60 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl hover:shadow-amber-100/50 hover:-translate-y-3">
-        <div class="text-4xl mb-6 w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all duration-500 shadow-inner">
-          🧮
+      <a href="/gst-calculator/" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-amber-500">
+        <div class="icon-wrapper w-16 h-16 bg-amber-50 text-amber-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-amber-500 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-calculator text-3xl"></i>
         </div>
-        <h3 class="font-black text-xl text-slate-900 mb-2">GST Master</h3>
-        <p class="text-slate-500 text-sm leading-relaxed mb-6">Instant GST add/remove calculator for India.</p>
-        <span class="text-xs font-black text-amber-600 uppercase tracking-widest flex items-center gap-2">Explore →</span>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">GST Master</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">Accurate GST add/remove calculator optimized for the Indian tax system.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Calculate <i class="fa-solid fa-arrow-right"></i>
+        </div>
       </a>
 
-      <a href="/pdf-to-excel/" class="tool-card group bg-white border border-slate-200/60 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-100/50 hover:-translate-y-3">
-        <div class="text-4xl mb-6 w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500 shadow-inner">
-          📄
+      <a href="/pdf-to-excel/" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-indigo-600">
+        <div class="icon-wrapper w-16 h-16 bg-indigo-50 text-indigo-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-indigo-600 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-file-excel text-3xl"></i>
         </div>
-        <h3 class="font-black text-xl text-slate-900 mb-2">PDF → Excel</h3>
-        <p class="text-slate-500 text-sm leading-relaxed mb-6">Extract complex tables into clean Excel files.</p>
-        <span class="text-xs font-black text-indigo-600 uppercase tracking-widest flex items-center gap-2">Explore →</span>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">PDF to Excel</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">Convert static PDF tables into fully editable Excel spreadsheets instantly.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Convert <i class="fa-solid fa-arrow-right"></i>
+        </div>
       </a>
 
-      <a href="/screen-recorder/" class="tool-card group bg-white border border-slate-200/60 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-100/50 hover:-translate-y-3">
-        <div class="text-4xl mb-6 w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500 shadow-inner">
-          🎥
+      <a href="/screen-recorder/" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-emerald-500">
+        <div class="icon-wrapper w-16 h-16 bg-emerald-50 text-emerald-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-emerald-500 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-clapperboard text-3xl"></i>
         </div>
-        <h3 class="font-black text-xl text-slate-900 mb-2">Rec Studio</h3>
-        <p class="text-slate-500 text-sm leading-relaxed mb-6">Record screen & mic directly in your browser.</p>
-        <span class="text-xs font-black text-emerald-600 uppercase tracking-widest flex items-center gap-2">Explore →</span>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">Rec Studio</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">High-definition screen and microphone recording right in your browser.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Go Live <i class="fa-solid fa-arrow-right"></i>
+        </div>
       </a>
 
-      <a href="/qr-generator/" class="tool-card group bg-white border border-slate-200/60 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl hover:shadow-blue-100/50 hover:-translate-y-3">
-        <div class="text-4xl mb-6 w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-inner">
-          🔗
+      <a href="/qr-generator/" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-blue-600">
+        <div class="icon-wrapper w-16 h-16 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-qrcode text-3xl"></i>
         </div>
-        <h3 class="font-black text-xl text-slate-900 mb-2">QR Builder</h3>
-        <p class="text-slate-500 text-sm leading-relaxed mb-6">Custom QR codes with logos & brand colors.</p>
-        <span class="text-xs font-black text-blue-600 uppercase tracking-widest flex items-center gap-2">Explore →</span>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">QR Builder</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">Generate branded QR codes with custom logos, colors, and shapes.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Design <i class="fa-solid fa-arrow-right"></i>
+        </div>
       </a>
 
-      <a href="/pdf-compressor/" class="tool-card group bg-white border border-slate-200/60 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl hover:shadow-rose-100/50 hover:-translate-y-3">
-        <div class="text-4xl mb-6 w-16 h-16 bg-rose-50 rounded-2xl flex items-center justify-center group-hover:bg-rose-500 group-hover:text-white transition-all duration-500 shadow-inner">
-          📉
+      <a href="/pdf-compressor/" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-rose-500">
+        <div class="icon-wrapper w-16 h-16 bg-rose-50 text-rose-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-rose-500 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-file-lines text-3xl"></i>
         </div>
-        <h3 class="font-black text-xl text-slate-900 mb-2">PDF Shrink</h3>
-        <p class="text-slate-500 text-sm leading-relaxed mb-6">Reduce file size with advanced compression.</p>
-        <span class="text-xs font-black text-rose-600 uppercase tracking-widest flex items-center gap-2">Explore →</span>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">PDF Shrink</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">Optimize your PDF file sizes for web and email without losing quality.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Compress <i class="fa-solid fa-arrow-right"></i>
+        </div>
       </a>
 
-      <a href="/pdf-merge/" class="tool-card group bg-white border border-slate-200/60 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl hover:shadow-violet-100/50 hover:-translate-y-3">
-        <div class="text-4xl mb-6 w-16 h-16 bg-violet-50 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 group-hover:text-white transition-all duration-500 shadow-inner">
-          📚
+      <a href="/image-compressor/" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-orange-500">
+        <div class="icon-wrapper w-16 h-16 bg-orange-50 text-orange-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-orange-600 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-file-image text-3xl"></i>
         </div>
-        <h3 class="font-black text-xl text-slate-900 mb-2">PDF Merge</h3>
-        <p class="text-slate-500 text-sm leading-relaxed mb-6">Combine multiple PDFs into one document.</p>
-        <span class="text-xs font-black text-violet-600 uppercase tracking-widest flex items-center gap-2">Explore →</span>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">Image Shrink</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">Batch optimize JPG, PNG, and WebP images with professional control.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Optimize <i class="fa-solid fa-arrow-right"></i>
+        </div>
       </a>
 
-      <a href="/pdf-tools/" class="tool-card group bg-white border border-slate-200/60 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-3">
-        <div class="text-4xl mb-6 w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all duration-500 shadow-inner">
-          ⚡
+      <a href="/pdf-merge/" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-violet-600">
+        <div class="icon-wrapper w-16 h-16 bg-violet-50 text-violet-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-violet-600 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-layer-group text-3xl"></i>
         </div>
-        <h3 class="font-black text-xl text-slate-900 mb-2">Master Tools</h3>
-        <p class="text-slate-500 text-sm leading-relaxed mb-6">Merge, compress & split PDFs easily.</p>
-        <span class="text-xs font-black text-slate-600 uppercase tracking-widest flex items-center gap-2">Explore →</span>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">PDF Merge</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">Securely combine multiple PDF documents into a single professional file.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Merge <i class="fa-solid fa-arrow-right"></i>
+        </div>
       </a>
 
+      <a href="/json-formatter/" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-lime-600">
+        <div class="icon-wrapper w-16 h-16 bg-lime-50 text-lime-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-lime-600 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-code text-3xl"></i>
+        </div>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">JSON Lab</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">Beautify, validate, and minify complex JSON data structures instantly.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Format <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <a href="/password-generator/" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-teal-600">
+        <div class="icon-wrapper w-16 h-16 bg-teal-50 text-teal-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-teal-600 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-shield-halved text-3xl"></i>
+        </div>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">Pass Armor</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">Generate military-grade secure passwords and backup keys offline.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Generate <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <a href="/unit-converter/" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-fuchsia-600">
+        <div class="icon-wrapper w-16 h-16 bg-fuchsia-50 text-fuchsia-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-fuchsia-600 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-arrows-rotate text-3xl"></i>
+        </div>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">Universal Conv.</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">Convert any metric or imperial unit with real-time scaling and precision.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Convert <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <a href="/pdf-tools/" class="tool-card-lg group p-8 rounded-[2.5rem] flex flex-col items-start text-slate-600">
+        <div class="icon-wrapper w-16 h-16 bg-slate-100 text-slate-600 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-slate-900 group-hover:text-white shadow-inner">
+          <i class="fa-solid fa-bolt text-3xl"></i>
+        </div>
+        <h3 class="font-black text-slate-900 text-2xl mb-3">Master Kit</h3>
+        <p class="text-slate-500 text-sm leading-relaxed mb-6">A complete multi-tool for splitting, rotating, and editing PDF files.</p>
+        <div class="mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all group-hover:gap-4">
+          Explore <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-24 bg-slate-900 overflow-hidden relative">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_-20%,rgba(6,182,212,0.15),transparent)]"></div>
+  
+  <div class="max-w-[1600px] mx-auto px-6 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-20 items-center">
+      
+      <div class="space-y-12">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-[900] text-white tracking-tight mb-6">
+            Engineered for <span class="text-cyan-400">Privacy First</span>
+          </h2>
+          <p class="text-slate-400 text-lg leading-relaxed">
+            Standard online tools upload your data to their servers. We don't. Everything you build, calculate, or compile stays in your browser's memory.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-8">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center text-cyan-400">
+              <i class="fa-solid fa-shield-halved text-2xl"></i>
+            </div>
+            <h4 class="text-white font-bold text-xl">End-to-End Local</h4>
+            <p class="text-slate-500 text-sm">Data never leaves your machine. Perfect for sensitive invoices.</p>
+          </div>
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+              <i class="fa-solid fa-bolt-lightning text-2xl"></i>
+            </div>
+            <h4 class="text-white font-bold text-xl">Instant Performance</h4>
+            <p class="text-slate-500 text-sm">No server round-trips. Experience desktop-speed in a browser.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-cyan-500/20 to-indigo-500/20 blur-3xl rounded-[3rem]"></div>
+        <div class="relative bg-slate-800/50 backdrop-blur-xl border border-slate-700 p-10 rounded-[3rem] space-y-10">
+          <div class="flex gap-6">
+            <span class="shrink-0 w-12 h-12 rounded-full bg-slate-700 text-cyan-400 flex items-center justify-center font-black border border-slate-600">01</span>
+            <div>
+              <h5 class="text-white font-bold text-lg">Pick a Tool</h5>
+              <p class="text-slate-500 text-sm">Select from 12+ professional business & dev utilities.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 border-l-2 border-dashed border-slate-700 ml-6 pl-12">
+            <span class="shrink-0 w-12 h-12 rounded-full bg-slate-700 text-indigo-400 flex items-center justify-center font-black border border-slate-600">02</span>
+            <div>
+              <h5 class="text-white font-bold text-lg">Process Locally</h5>
+              <p class="text-slate-500 text-sm">Input data, compile code, or generate PDFs in real-time.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <span class="shrink-0 w-12 h-12 rounded-full bg-slate-700 text-emerald-400 flex items-center justify-center font-black border border-slate-600">03</span>
+            <div>
+              <h5 class="text-white font-bold text-lg">Download Result</h5>
+              <p class="text-slate-500 text-sm">Save your output instantly with no watermarks or limits.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h3 class="text-3xl font-black text-slate-900 tracking-tight">Trusted by <span class="text-indigo-600">Digital Professionals</span></h3>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
+        <p class="text-slate-600 italic mb-6">"The Invoice Pro tool saved me from expensive subscriptions. It's clean, fast, and the PDF quality is top-notch."</p>
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-cyan-100"></div>
+          <div>
+            <p class="font-bold text-slate-900 text-sm">Arjun V.</p>
+            <p class="text-xs text-slate-400 uppercase font-bold tracking-widest">Freelance Dev</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
+        <p class="text-slate-600 italic mb-6">"Finally a Python compiler that doesn't lag. Perfect for testing snippets while I'm on a different machine."</p>
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-indigo-100"></div>
+          <div>
+            <p class="font-bold text-slate-900 text-sm">Sarah Jenkins</p>
+            <p class="text-xs text-slate-400 uppercase font-bold tracking-widest">CS Student</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
+        <p class="text-slate-600 italic mb-6">"The GST calculator is built exactly how an Indian accountant needs it. Simplified my month-end filing."</p>
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-100"></div>
+          <div>
+            <p class="font-bold text-slate-900 text-sm">Manoj Kumar</p>
+            <p class="text-xs text-slate-400 uppercase font-bold tracking-widest">SMB Owner</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -519,6 +668,49 @@
       </div>
     </div>
   </section>
+<section class="py-20 bg-white border-t border-slate-100">
+  <div class="max-w-4xl mx-auto px-6">
+    <h3 class="text-3xl font-black text-slate-900 mb-8 tracking-tight text-center">
+      GST & Invoicing <span class="text-cyan-600">Knowledge Base</span>
+    </h3>
+
+    <div class="space-y-4">
+      <details class="group border border-slate-200 rounded-2xl p-6 [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+          <h4 class="text-lg font-bold text-slate-900">How do I calculate GST for Service Exports from India?</h4>
+          <span class="text-cyan-600 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Service exports are generally treated as <strong>Zero-Rated Supplies</strong>. You can export services under an LUT (Letter of Undertaking) without paying IGST, or pay IGST and claim a refund later. Use the Hytechsoft GST tool to verify your base amounts before filing.
+        </p>
+      </details>
+
+      <details class="group border border-slate-200 rounded-2xl p-6 [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+          <h4 class="text-lg font-bold text-slate-900">What is the difference between CGST, SGST, and IGST?</h4>
+          <span class="text-cyan-600 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="mt-4 text-slate-600 leading-relaxed space-y-2">
+          <p>The type of tax depends on the location of the supplier and the recipient:</p>
+          <ul class="list-disc ml-5 space-y-1">
+            <li><strong>Intra-state (Same State):</strong> CGST + SGST are applied (e.g., 9% each for an 18% slab).</li>
+            <li><strong>Inter-state (Different States):</strong> Only IGST is applied (18% total).</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="group border border-slate-200 rounded-2xl p-6 [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+          <h4 class="text-lg font-bold text-slate-900">Are these tools safe for my business data?</h4>
+          <span class="text-cyan-600 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Yes. Unlike other tools, <strong>Hytechsoft</strong> processed everything 100% client-side. Your financial data, invoices, and client lists never reach our servers. It is the most private way to manage business admin.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
 </main>
 
 <section class="bg-slate-50 border-t border-slate-200 py-12">
