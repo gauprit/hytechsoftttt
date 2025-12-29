@@ -339,11 +339,21 @@ stopBtn.addEventListener("click", () => {
         document.getElementById("mobile-warning").classList.remove("hidden");
     }
 
-    // Mobile Menu Toggle
-    const mobileBtn = document.getElementById('mobile-toggle');
-    const mobileMenu = document.getElementById('mobile-toggle').nextElementSibling; // Needs specific ID if actually used
-    // Simplified toggle for your header
-    mobileBtn.onclick = () => alert("Menu functionality can be linked to your main site navigation.");
+      const mobileToggle = document.getElementById('mobile-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileToggle.onclick = () => mobileMenu.classList.toggle('hidden');
+
+  // Unified Search
+  const searchInputs = ['hero-search'];
+  searchInputs.forEach(id => {
+    document.getElementById(id).addEventListener('input', e => {
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('#tools-grid a, #compilers a').forEach(card => {
+        const isVisible = card.innerText.toLowerCase().includes(q);
+        card.style.display = isVisible ? 'block' : 'none';
+      });
+    });
+  });
 </script>
 </body>
 </html>
