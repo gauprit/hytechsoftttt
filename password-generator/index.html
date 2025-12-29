@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pass Armour | Secure Key Generator — HytechSoft</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        input[type=range] { accent-color: #0891b2; } /* Cyan-600 */
+        .strength-glow { transition: all 0.5s ease; }
+    </style>
+</head>
+
+<body class="bg-slate-50/50 text-slate-900 selection:bg-cyan-100">
+
+<header class="sticky top-0 z-50 w-full border-b border-slate-200/60 bg-white/70 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="relative h-12 w-12 flex items-center justify-center">
+                    <div class="absolute inset-0 rounded-full bg-slate-50 border border-slate-100 shadow-inner"></div>
+                    <div class="grid grid-cols-2 gap-0.5 p-2 transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="h-3 w-3 rounded-full bg-cyan-600"></div>
+                        <div class="h-3 w-3 rounded-full bg-indigo-500"></div>
+                        <div class="h-3 w-3 rounded-full bg-blue-400"></div>
+                        <div class="h-3 w-3 rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
+                            <span class="text-[8px] text-white font-bold italic">h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex flex-col pr-4 border-r border-slate-200">
+                        <span class="text-2xl font-black text-slate-900 tracking-tighter leading-none italic">HytechSoft</span>
+                    </div>
+                    <div class="pl-4">
+                        <span class="text-[10px] font-medium text-slate-500 leading-tight block">Innovating<br>Intelligence</span>
+                    </div>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                <a href="/" class="hover:text-cyan-600 transition-colors">Back to Tools</a>
+                <span class="px-3 py-1 bg-cyan-50 text-cyan-600 rounded-md text-[10px] font-black uppercase">Local Secure</span>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-4xl mx-auto px-6 py-12 md:py-20">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-4">
+            Pass <span class="text-cyan-600 italic">Armour</span>
+        </h1>
+        <p class="text-slate-500 text-lg max-w-xl mx-auto">
+            Generate high-entropy, military-grade keys using client-side <span class="text-slate-900 font-bold">CSPRNG</span> technology.
+        </p>
+    </div>
+
+    <div class="glass-card p-6 md:p-10 rounded-[2.5rem] shadow-xl border border-slate-200 bg-white">
+        <div class="relative group mb-8">
+            <div id="strength-glow" class="absolute -inset-1 bg-cyan-500 rounded-2xl blur opacity-10 strength-glow"></div>
+            <div class="relative flex items-center bg-slate-900 rounded-2xl overflow-hidden">
+                <input type="text" id="pass-display" readonly 
+                       class="w-full bg-transparent px-6 py-6 font-mono text-xl md:text-2xl text-cyan-400 outline-none"
+                       value="Forge Your Key">
+                <button onclick="copyPass()" class="px-6 text-slate-400 hover:text-white transition-colors border-l border-slate-700">
+                    <i class="fa-solid fa-copy"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10">
+            <div class="space-y-6">
+                <div>
+                    <label class="flex justify-between text-[11px] font-black uppercase tracking-widest text-slate-400 mb-4">
+                        Key Length <span id="len-label" class="text-cyan-600">32 Bits</span>
+                    </label>
+                    <input type="range" id="length" min="8" max="128" value="32" class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <label class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-cyan-200 cursor-pointer transition-all">
+                        <input type="checkbox" id="inc-num" checked class="w-5 h-5 rounded border-slate-300">
+                        <span class="text-sm font-bold text-slate-700">Numbers</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-cyan-200 cursor-pointer transition-all">
+                        <input type="checkbox" id="inc-sym" checked class="w-5 h-5 rounded border-slate-300">
+                        <span class="text-sm font-bold text-slate-700">Symbols</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-center">
+                <button onclick="generateKey()" class="w-full py-6 bg-slate-900 text-white rounded-[1.5rem] font-black uppercase tracking-widest hover:bg-cyan-600 transition-all shadow-xl shadow-cyan-100 active:scale-95">
+                    Forge Armour Key
+                </button>
+                <p class="mt-4 text-center text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                    <i class="fa-solid fa-microchip mr-1"></i> Generated via window.crypto.getRandomValues()
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-3xl bg-emerald-50 border border-emerald-100">
+            <i class="fa-solid fa-wifi-slash text-emerald-600 mb-3 block text-xl"></i>
+            <h4 class="font-bold text-slate-900 text-sm">Offline Forge</h4>
+            <p class="text-slate-500 text-xs mt-1">Works without internet. Your keys never leave your RAM.</p>
+        </div>
+        <div class="p-6 rounded-3xl bg-cyan-50 border border-cyan-100">
+            <i class="fa-solid fa-dice text-cyan-600 mb-3 block text-xl"></i>
+            <h4 class="font-bold text-slate-900 text-sm">True Entropy</h4>
+            <p class="text-slate-500 text-xs mt-1">Uses hardware-level randomness for cryptographic safety.</p>
+        </div>
+        <div class="p-6 rounded-3xl bg-indigo-50 border border-indigo-100">
+            <i class="fa-solid fa-user-secret text-indigo-600 mb-3 block text-xl"></i>
+            <h4 class="font-bold text-slate-900 text-sm">No Logs</h4>
+            <p class="text-slate-500 text-xs mt-1">Zero tracking. Zero database. Only you see the result.</p>
+        </div>
+    </div>
+</main>
+
+<script>
+    const display = document.getElementById('pass-display');
+    const lengthRange = document.getElementById('length');
+    const lenLabel = document.getElementById('len-label');
+    const incNum = document.getElementById('inc-num');
+    const incSym = document.getElementById('inc-sym');
+    const glow = document.getElementById('strength-glow');
+
+    function generateKey() {
+        const len = lengthRange.value;
+        const charset = {
+            alpha: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+            num: "0123456789",
+            sym: "!@#$%^&*()_+-=[]{}|;:,.<>?"
+        };
+
+        let chars = charset.alpha;
+        if (incNum.checked) chars += charset.num;
+        if (incSym.checked) chars += charset.sym;
+
+        let result = "";
+        const randomValues = new Uint32Array(len);
+        window.crypto.getRandomValues(randomValues);
+
+        for (let i = 0; i < len; i++) {
+            result += chars.charAt(randomValues[i] % chars.length);
+        }
+
+        display.value = result;
+        
+        // Update strength UI
+        lenLabel.innerText = len + " Bits";
+        const strength = (len / 128);
+        glow.style.opacity = strength * 0.8;
+    }
+
+    function copyPass() {
+        if (display.value === "Forge Your Key") return;
+        navigator.clipboard.writeText(display.value);
+        const oldVal = display.value;
+        display.value = "COPIED TO CLIPBOARD";
+        display.classList.add('text-emerald-400');
+        setTimeout(() => {
+            display.value = oldVal;
+            display.classList.remove('text-emerald-400');
+        }, 1500);
+    }
+
+    lengthRange.oninput = () => {
+        lenLabel.innerText = lengthRange.value + " Bits";
+    }
+
+    // Auto-generate on load
+    window.onload = generateKey;
+</script>
+
+</body>
+</html>
