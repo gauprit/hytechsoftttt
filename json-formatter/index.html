@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Lab | Secure Formatter — HytechSoft</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
+        .editor-area { font-family: 'JetBrains Mono', 'Fira Code', monospace; scrollbar-width: thin; transition: border 0.2s ease; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .tool-btn { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .drop-active { border: 2px dashed #84cc16 !important; background-color: #f7fee7 !important; }
+    </style>
+</head>
+
+<body class="text-slate-900 selection:bg-lime-100">
+
+<header class="sticky top-0 z-50 w-full border-b border-slate-200/60 bg-white/70 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="relative h-12 w-12 flex items-center justify-center">
+                    <div class="absolute inset-0 rounded-full bg-slate-50 border border-slate-100 shadow-inner"></div>
+                    <div class="grid grid-cols-2 gap-0.5 p-2 transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="h-3 w-3 rounded-full bg-lime-500"></div>
+                        <div class="h-3 w-3 rounded-full bg-indigo-500"></div>
+                        <div class="h-3 w-3 rounded-full bg-blue-400"></div>
+                        <div class="h-3 w-3 rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
+                            <span class="text-[8px] text-white font-bold italic">h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex flex-col pr-4 border-r border-slate-200">
+                        <span class="text-2xl font-black text-slate-900 tracking-tighter leading-none italic">HytechSoft</span>
+                    </div>
+                    <div class="pl-4 text-xs font-bold text-slate-400">JSON<br>LAB</div>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-4">
+                <span class="px-3 py-1 bg-lime-50 text-lime-600 rounded-md text-[10px] font-black uppercase tracking-wider border border-lime-100">Local Privacy Enabled</span>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-[1600px] mx-auto px-6 py-8">
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+            <h1 class="text-3xl font-black tracking-tight text-slate-900">JSON <span class="text-lime-600 italic">Lab</span></h1>
+            <p id="status-text" class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Paste code or drop a .json file</p>
+        </div>
+        
+        <div class="flex items-center gap-2 bg-white p-1.5 rounded-2xl shadow-sm border border-slate-200">
+            <button onclick="processJSON('format')" class="tool-btn px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-lime-600">
+                Beautify
+            </button>
+            <button onclick="processJSON('minify')" class="tool-btn px-4 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-slate-200">
+                Minify
+            </button>
+            <div class="w-px h-6 bg-slate-200 mx-1"></div>
+            <button onclick="copyToClipboard()" title="Copy to Clipboard" class="tool-btn px-4 py-2 text-slate-400 hover:text-slate-900 hover:bg-slate-50 rounded-xl">
+                <i class="fa-solid fa-copy"></i>
+            </button>
+            <button onclick="downloadJSON()" title="Download JSON" class="tool-btn px-4 py-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl">
+                <i class="fa-solid fa-download"></i>
+            </button>
+            <button onclick="clearAll()" title="Clear All" class="tool-btn px-4 py-2 text-rose-500 hover:bg-rose-50 rounded-xl">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="flex gap-4 mb-3 px-2">
+        <button onclick="loadSample()" class="text-[10px] font-bold text-indigo-500 hover:text-indigo-700 uppercase tracking-wider flex items-center gap-1">
+            <i class="fa-solid fa-flask-vial"></i> Load Sample
+        </button>
+        <button onclick="fixJson()" class="text-[10px] font-bold text-orange-500 hover:text-orange-700 uppercase tracking-wider flex items-center gap-1">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fix Syntax
+        </button>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-4 h-[calc(100vh-280px)]">
+        <div class="relative flex flex-col group">
+            <div class="absolute top-4 right-4 z-10 text-[10px] font-black text-slate-300 uppercase">Input</div>
+            <textarea id="json-input" spellcheck="false" placeholder='{"key": "value"}' 
+                class="editor-area w-full flex-grow p-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm focus:ring-4 ring-lime-500/10 outline-none text-sm resize-none"></textarea>
+            <div id="input-stats" class="mt-2 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Characters: 0</div>
+        </div>
+        
+        <div class="relative flex flex-col group">
+            <div class="absolute top-4 right-4 z-10 text-[10px] font-black text-slate-700 uppercase">Output</div>
+            <div id="json-output" class="editor-area w-full flex-grow p-8 rounded-[2rem] bg-slate-900 text-lime-400 overflow-auto text-sm whitespace-pre border border-slate-800 shadow-xl">
+// Formatted output will appear here
+            </div>
+            <div id="output-stats" class="mt-2 px-4 text-[10px] font-bold text-slate-400 uppercase tracking-tighter text-right">Size: 0 KB</div>
+        </div>
+    </div>
+</main>
+
+<script>
+    const input = document.getElementById('json-input');
+    const output = document.getElementById('json-output');
+    const status = document.getElementById('status-text');
+    const inputStats = document.getElementById('input-stats');
+    const outputStats = document.getElementById('output-stats');
+
+    function updateStats() {
+        const inputLen = input.value.length;
+        const outputLen = output.textContent.startsWith('//') ? 0 : output.textContent.length;
+        
+        inputStats.innerText = `Characters: ${inputLen.toLocaleString()}`;
+        outputStats.innerText = `Size: ${(outputLen / 1024).toFixed(2)} KB`;
+    }
+
+    function processJSON(mode) {
+        let raw = input.value.trim();
+        if (!raw) {
+            updateStats();
+            return;
+        }
+
+        try {
+            const parsed = JSON.parse(raw);
+            const processed = mode === 'format' 
+                ? JSON.stringify(parsed, null, 4) 
+                : JSON.stringify(parsed);
+            
+            output.textContent = processed;
+            output.classList.remove('text-rose-400');
+            output.classList.add('text-lime-400');
+            status.innerText = "Valid JSON - " + (mode === 'format' ? 'Formatted' : 'Minified');
+            status.className = "text-xs font-bold text-lime-600 uppercase tracking-widest mt-1";
+            updateStats();
+        } catch (e) {
+            output.textContent = "ERROR: " + e.message;
+            output.classList.remove('text-lime-400');
+            output.classList.add('text-rose-400');
+            status.innerText = "Invalid JSON structure";
+            status.className = "text-xs font-bold text-rose-500 uppercase tracking-widest mt-1";
+        }
+    }
+
+    function fixJson() {
+        let str = input.value;
+        // Basic fix for trailing commas and single quotes
+        str = str.replace(/,\s*([\]}])/g, '$1'); 
+        str = str.replace(/'/g, '"');
+        input.value = str;
+        processJSON('format');
+    }
+
+    function loadSample() {
+        const sample = {
+            "id": "lab-01",
+            "name": "HytechSoft JSON Lab",
+            "features": ["Formatting", "Minification", "Privacy", "Offline"],
+            "security": "100% Client-Side",
+            "timestamp": new Date().toISOString()
+        };
+        input.value = JSON.stringify(sample, null, 4);
+        processJSON('format');
+    }
+
+    function downloadJSON() {
+        const text = output.textContent;
+        if (text.startsWith('//') || text.startsWith('ERROR')) return;
+        const blob = new Blob([text], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `hytech-json-${Date.now()}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    function copyToClipboard() {
+        const text = output.textContent;
+        if (text.startsWith('//')) return;
+        navigator.clipboard.writeText(text);
+        const btn = event.currentTarget;
+        const icon = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check text-lime-500"></i>';
+        setTimeout(() => btn.innerHTML = icon, 1500);
+    }
+
+    function clearAll() {
+        input.value = '';
+        output.textContent = '// Formatted output will appear here';
+        status.innerText = "Paste your code to begin";
+        status.className = "text-xs font-bold text-slate-400 uppercase tracking-widest mt-1";
+        updateStats();
+    }
+
+    // Drag and Drop Logic
+    input.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        input.classList.add('drop-active');
+    });
+
+    input.addEventListener('dragleave', () => {
+        input.classList.remove('drop-active');
+    });
+
+    input.addEventListener('drop', (e) => {
+        e.preventDefault();
+        input.classList.remove('drop-active');
+        const file = e.dataTransfer.files[0];
+        if (file && file.name.endsWith('.json')) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                input.value = event.target.result;
+                processJSON('format');
+            };
+            reader.readAsText(file);
+        }
+    });
+
+    // Auto-process on input
+    let timeout;
+    input.addEventListener('input', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => processJSON('format'), 500);
+    });
+</script>
+
+</body>
+</html>
