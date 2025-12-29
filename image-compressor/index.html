@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Shrink Pro | HytechSoft</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; overflow-x: hidden; }
+
+        .glass-studio {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 50px -12px rgba(15, 23, 42, 0.05);
+        }
+
+        /* The Comparison Slider Engine */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 2rem;
+            background-color: #f1f5f9;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+
+        .comparison-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .after-image {
+            width: 50%; /* Initial split */
+            clip-path: inset(0 0 0 0); /* Dynamic clip */
+            border-right: 2px solid #6366f1;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: #6366f1;
+            cursor: ew-resize;
+            z-index: 30;
+            transform: translateX(-50%);
+        }
+
+        .handle-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #6366f1;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+
+        input[type=range] { accent-color: #6366f1; }
+    </style>
+</head>
+
+<body class="selection:bg-indigo-100">
+
+    <header class="sticky top-0 z-50 w-full border-b border-slate-200/60 bg-white/70 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <a href="/" class="flex items-center gap-3 group">
+                    <div class="relative h-12 w-12 flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full bg-slate-50 border border-slate-100 shadow-inner"></div>
+                        <div class="grid grid-cols-2 gap-0.5 p-2 transform group-hover:scale-110 transition-transform duration-500">
+                            <div class="h-3 w-3 rounded-full bg-cyan-600"></div>
+                            <div class="h-3 w-3 rounded-full bg-indigo-500"></div>
+                            <div class="h-3 w-3 rounded-full bg-blue-400"></div>
+                            <div class="h-3 w-3 rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
+                                <span class="text-[8px] text-white font-bold italic">h</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex flex-col pr-4 border-r border-slate-200">
+                            <span class="text-2xl font-black text-slate-900 tracking-tighter leading-none italic">HytechSoft</span>
+                        </div>
+                        <div class="pl-4">
+                            <span class="text-[10px] font-medium text-slate-500 leading-tight block">Innovating<br>Intelligence</span>
+                        </div>
+                    </div>
+                </a>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#compilers" class="text-sm font-semibold text-slate-600 hover:text-cyan-600 transition-colors">Compilers</a>
+                    <a href="#tools" class="text-sm font-semibold text-slate-600 hover:text-cyan-600 transition-colors">Tools</a>
+                    <a href="#contact" class="text-sm font-semibold text-slate-600 hover:text-cyan-600 transition-colors">Support</a>
+                    <a href="/impact" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-slate-800 transition-all active:scale-95 shadow-lg shadow-slate-200">
+                        Get Help
+                    </a>
+                </nav>
+                <button id="mobile-toggle" class="md:hidden p-2 text-slate-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 py-6 space-y-4 shadow-xl">
+            <a href="#compilers" class="block text-lg font-semibold text-slate-900">Compilers</a>
+            <a href="#tools" class="block text-lg font-semibold text-slate-900">Tools</a>
+            <a href="#contact" class="block text-lg font-semibold text-slate-900">Support</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-10">
+        
+        <div class="mb-10 text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-[10px] font-bold uppercase tracking-widest mb-4">
+                <i class="fa-solid fa-expand"></i> Smart Resize Enabled
+            </div>
+            <h1 class="text-4xl font-black text-slate-900 tracking-tight">Media <span class="text-indigo-600">Shrink Pro</span></h1>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+            
+            <aside class="lg:col-span-4 space-y-6">
+                <div class="glass-studio p-8 rounded-[2.5rem]">
+                    <h3 class="font-bold text-slate-900 text-lg mb-8 flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-indigo-600"></i> Studio Config
+                    </h3>
+
+                    <div class="space-y-10">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <label class="text-[10px] font-black uppercase text-slate-400">Quality</label>
+                                <span id="q-label" class="text-xl font-black text-indigo-600">80%</span>
+                            </div>
+                            <input type="range" id="quality" min="5" max="100" value="80" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer">
+                        </div>
+
+                        <div class="space-y-4">
+                            <label class="text-[10px] font-black uppercase text-slate-400">Dimension Control</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                                    <span class="text-[9px] font-bold text-slate-400 uppercase">Width (px)</span>
+                                    <input type="number" id="resize-w" placeholder="Auto" class="w-full bg-transparent font-bold outline-none text-slate-900">
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                                    <span class="text-[9px] font-bold text-slate-400 uppercase">Height (px)</span>
+                                    <input type="number" id="resize-h" placeholder="Auto" class="w-full bg-transparent font-bold outline-none text-slate-900">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="perf-dash" class="hidden p-6 bg-slate-900 rounded-[2rem] text-white space-y-4">
+                            <div class="flex justify-between">
+                                <span class="text-[10px] font-bold text-slate-500 uppercase">Original</span>
+                                <span id="size-o" class="font-mono text-xs">0 KB</span>
+                            </div>
+                            <div class="flex justify-between border-b border-white/5 pb-4">
+                                <span class="text-[10px] font-bold text-indigo-400 uppercase">Optimized</span>
+                                <span id="size-n" class="font-mono text-xs text-indigo-400">0 KB</span>
+                            </div>
+                            <div class="text-center pt-2">
+                                <h4 id="saving" class="text-5xl font-black text-emerald-400 tracking-tighter">-0%</h4>
+                            </div>
+                        </div>
+
+                        <button id="dl-btn" disabled class="w-full py-5 bg-indigo-600 text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl shadow-indigo-100 active:scale-95 transition-all disabled:opacity-20 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-download"></i> Save Optimized
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="lg:col-span-8">
+                <div id="drop-area" class="glass-studio p-4 min-h-[600px] flex flex-col relative group">
+                    
+                    <div id="view-empty" class="flex-grow flex flex-col items-center justify-center text-center p-12 cursor-pointer rounded-[3rem] border-2 border-dashed border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/20 transition-all">
+                        <input type="file" id="fileInput" class="hidden" accept="image/*">
+                        <div class="w-24 h-24 bg-white rounded-3xl shadow-xl flex items-center justify-center text-4xl text-indigo-600 mb-8">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+                        <h2 class="text-2xl font-black text-slate-900">Select Media</h2>
+                        <p class="text-slate-400 mt-2 font-medium">Drag and drop or click to process</p>
+                    </div>
+
+                    <div id="view-active" class="hidden flex-grow flex flex-col gap-4">
+                        <div class="comparison-slider" id="slider-root">
+                            <img id="img-o" class="comparison-item">
+                            <img id="img-n" class="comparison-item after-image">
+                            
+                            <div class="absolute top-6 left-6 z-20 px-3 py-1 bg-black/60 backdrop-blur-md text-white text-[9px] font-black uppercase rounded-lg">Source</div>
+                            <div class="absolute top-6 right-6 z-20 px-3 py-1 bg-indigo-600 text-white text-[9px] font-black uppercase rounded-lg">Optimized</div>
+
+                            <div class="slider-handle" id="slider-handle">
+                                <div class="handle-circle">
+                                    <i class="fa-solid fa-right-left"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center px-4 py-2">
+                            <span class="text-[10px] font-black text-slate-400 uppercase">Drag slider to compare quality</span>
+                            <button onclick="location.reload()" class="text-slate-400 hover:text-indigo-600 text-[10px] font-black uppercase transition-all">
+                                <i class="fa-solid fa-circle-xmark mr-1"></i> Clear Studio
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Header Toggle
+        const mt = document.getElementById('mobile-toggle');
+        const mm = document.getElementById('mobile-menu');
+        if(mt) mt.onclick = () => mm.classList.toggle('hidden');
+
+        // Main Logic
+        let raw = null, originalImg = new Image();
+        const ui = {
+            q: document.getElementById('quality'), ql: document.getElementById('q-label'),
+            rw: document.getElementById('resize-w'), rh: document.getElementById('resize-h'),
+            io: document.getElementById('img-o'), in: document.getElementById('img-n'),
+            so: document.getElementById('size-o'), sn: document.getElementById('size-n'),
+            sv: document.getElementById('saving'), dl: document.getElementById('dl-btn'),
+            fi: document.getElementById('fileInput'), ve: document.getElementById('view-empty'),
+            va: document.getElementById('view-active'), pd: document.getElementById('perf-dash'),
+            da: document.getElementById('drop-area'), 
+            root: document.getElementById('slider-root'), handle: document.getElementById('slider-handle')
+        };
+
+        // File Handling
+        ui.ve.onclick = () => ui.fi.click();
+        ui.fi.onchange = (e) => { if(e.target.files[0]) process(e.target.files[0]); };
+
+        function process(file) {
+            raw = file;
+            const r = new FileReader();
+            r.onload = (e) => {
+                originalImg.src = e.target.result;
+                originalImg.onload = () => {
+                    ui.io.src = e.target.result;
+                    ui.rw.value = originalImg.width;
+                    ui.rh.value = originalImg.height;
+                    ui.ve.classList.add('hidden');
+                    ui.va.classList.remove('hidden');
+                    ui.pd.classList.remove('hidden');
+                    run();
+                };
+            };
+            r.readAsDataURL(file);
+        }
+
+        // Engine Calculation
+        async function run() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            const w = parseInt(ui.rw.value) || originalImg.width;
+            const h = parseInt(ui.rh.value) || originalImg.height;
+            
+            canvas.width = w; canvas.height = h;
+            ctx.drawImage(originalImg, 0, 0, w, h);
+
+            const quality = ui.q.value / 100;
+            const dataUrl = canvas.toDataURL('image/jpeg', quality);
+            ui.in.src = dataUrl;
+            
+            // Stats
+            const newSize = Math.round((dataUrl.length - 22) * 3/4);
+            ui.so.innerText = format(raw.size);
+            ui.sn.innerText = format(newSize);
+            const red = Math.round((1 - newSize/raw.size) * 100);
+            ui.sv.innerText = red > 0 ? `-${red}%` : `0%`;
+            ui.dl.disabled = false;
+        }
+
+        ui.q.oninput = (e) => { ui.ql.innerText = `${e.target.value}%`; if(raw) run(); };
+        ui.rw.oninput = () => { if(raw) run(); };
+        ui.rh.oninput = () => { if(raw) run(); };
+
+        // Slider Interaction
+        let isDragging = false;
+        const moveSlider = (e) => {
+            if (!isDragging) return;
+            const rect = ui.root.getBoundingClientRect();
+            let x = (e.pageX || e.touches[0].pageX) - rect.left - window.scrollX;
+            if (x < 0) x = 0;
+            if (x > rect.width) x = rect.width;
+            
+            const percent = (x / rect.width) * 100;
+            ui.handle.style.left = percent + "%";
+            ui.in.style.width = percent + "%";
+        };
+
+        ui.handle.onmousedown = () => isDragging = true;
+        ui.handle.ontouchstart = () => isDragging = true;
+        window.onmouseup = () => isDragging = false;
+        window.ontouchend = () => isDragging = false;
+        window.onmousemove = moveSlider;
+        window.ontouchmove = moveSlider;
+
+        ui.dl.onclick = () => {
+            const a = document.createElement('a');
+            a.download = `shrinked-${Date.now()}.jpg`;
+            a.href = ui.in.src; a.click();
+        };
+
+        function format(b) {
+            if(b === 0) return '0 B';
+            const k = 1024, s = ['B', 'KB', 'MB'], i = Math.floor(Math.log(b)/Math.log(k));
+            return parseFloat((b/Math.pow(k, i)).toFixed(2)) + ' ' + s[i];
+        }
+    </script>
+</body>
+</html>
